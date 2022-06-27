@@ -1,0 +1,56 @@
+body {
+	width: 800px;
+	margin: auto;
+	text-align: left;	
+}
+
+h1 {
+	text-align: center;
+	font-size: 48px;
+	padding-bottom: 48px;
+}
+
+ul.menu > li {
+	display: inline;
+	padding: 5px;	
+	list-style-type: none;
+}
+
+ul.menu li > a {
+	border: 2px solid black;
+	text-decoration: none;
+	color: white;
+	background-color: blue;
+}
+
+div.standard {
+	color: darkgrey;
+	font-size:12px;	
+	background-color: white; 
+}
+
+.error {
+	 color:red;
+ }
+
+footer {
+	background-color: black;
+	color: white;
+	font-size: 10px;
+	text-align: right;	
+}
+
+input[type=text] {
+	width: 400px;	
+}
+
+#submit {
+	color: darkgrey;
+	font-size:12px;
+}
+
+#bericht {	
+  resize: none;
+  width: 400px;
+  vertical-align: middle;
+}
