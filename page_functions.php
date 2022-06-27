@@ -4,7 +4,14 @@ require 'arrays.php';
 
 function generateHeader($title) 
 {
-	echo '<h1>' . strtoupper($title) . '</h1>';
+	if ($title == 'changepassword')
+	{
+		echo '<h1>Change Password</h1>';
+	}
+	else
+	{
+		echo '<h1>' . strtoupper($title) . '</h1>';
+	}	
 }
 
 function generalFooter() 

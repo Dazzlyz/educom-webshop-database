@@ -9,75 +9,56 @@ require 'form_fields.php';
 require 'generate_body.php';
 require 'menu.php';
 require 'handle_database.php';
+require 'session_manager.php';
 
 function getRequest() : array
-{
-	$requested_type = $_SERVER['REQUEST_METHOD']; 
-	$posted = ($requested_type == 'POST') ? true : false;
+{	
+	$posted = ($_SERVER['REQUEST_METHOD'] == 'POST') ? true : false;
 	$page = getRequestedPage(); 
 	return array ('posted' => $posted,
 				  'page' => $page);	
 }
 
 function validateRequest(array $request) : array
-{
-	$request = getRequest();
+{	
+	// code zou ook moeten werken zonder deze assignment door meegeven waarde
+	$request=getRequest();
     $response = $request;
 
     if ($request['posted'])
-    {
-		
+    {		
+		$post_result = validatePostData($_POST, $post_result=array(), $request['page']);	
         switch ($request['page'])
-        {
-            case 'login' :
-				$post_result = validatePostData($_POST, $post_result=array(), $request['page']);	
+        {			
+            case 'login' :					
 				if (isResultArrayComplete($post_result))
 				{
-					$_SESSION['email'] = $_SESSION['check_array']['email'];
-					$_SESSION['password'] = $_SESSION['check_array']['password'];	
-					$_SESSION['username'] = $_SESSION['check_array']['naam'];		
+					logInUser();	
 					$response['page'] = 'home';
-				}
-				else 
-				{
-					$response = $request;
-				}               			
+				}				    			
                 break;
-			case 'register' :
-				$post_result = validatePostData($_POST, $post_result=array(), $request['page']);	
+			case 'register' :				
 				if (isResultArrayComplete($post_result))
 				{											
 					insertData($post_result);
 					$response['page'] = 'login';
-				}
-				else 
-				{
-					$response = $request;
-				}               			
+				}				             			
                 break;
-			case 'changepassword' :				
-				$post_result = validatePostData($_POST, $post_result=array(), $request['page']);					
+			case 'changepassword' :			
+							
 				if (isResultArrayComplete($post_result))
 				{		
 					updatePassword($post_result['nieuw_wachtwoord_controle'], $_SESSION['email']);
-					$_SESSION['password'] = $post_result['nieuw_wachtwoord_controle'];
+					updateSessionPassword($post_result['nieuw_wachtwoord_controle']);
 					$response['page'] = 'home';
-				}
-				else 
-				{
-					$response = $request;
-				}               			
+				}				            			
                 break;	
-			case 'contact' :
-				$post_result = validatePostData($_POST, $post_result=array(), $request['page']);	
+			// fix contact laat nu dubbel pagina zien. 
+			case 'contact' :				
 				if (isResultArrayComplete($post_result))
 				{
 					showThankYou($post_result); 
-				}	
-				else 
-				{
-					$response = $request;
-				} 
+				}					
 				break;	
         }
     }
@@ -86,7 +67,7 @@ function validateRequest(array $request) : array
         switch ($request['page'])
         {
             case 'logout' :
-                $_SESSION['username']	= '';
+                logOutUser();
                 $response['page'] = 'home';
                 break;
         }
@@ -94,7 +75,6 @@ function validateRequest(array $request) : array
     return $response;
 }
 
-// titel fixen, vooral van changepassword pagina
 function showPage($response='') 
 {	
 	generateHead($response['page']);
@@ -141,8 +121,6 @@ function generateContent($page, $post_result=array())
 		break;		
 	}	
 }
-
-
 
 
 ?>

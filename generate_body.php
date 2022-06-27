@@ -11,7 +11,7 @@ function generateBody($post_result, $page)
 		checkPostRequest($post_result, $page);		
 	}	
 }
-// worden deze nog wel aangeroepen?
+
 function checkPostRequest($post_result, $page)
 {
 	$post_result = validatePostData($_POST, $post_result, $page);	

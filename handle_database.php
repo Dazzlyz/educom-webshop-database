@@ -1,10 +1,4 @@
  <?php
- 
- // gebruiken om eenmalig database te openen? 
-function openDatabase()
-{
-	$_SESSION['conn'] = connectDatabase();	
-}
 
 function connectDatabase()
 {
@@ -16,11 +10,13 @@ function connectDatabase()
 
 	if (!$conn) 
 	{
-		throw new Exception('Error, can not connect to database');
+		die("Connection failed: " . mysqli_connect_error());
 	}
 	return $conn;
 }
 // AANZIENLIJK MOOIER MAKEN
+// true check oplossen
+// mogelijk voor mail zoeken en error opvangen bij ontbreken? 
 function checkMailEntries($user_data)
 {	
 	$conn = connectDatabase();	
@@ -46,6 +42,7 @@ function checkMailEntries($user_data)
 	{
 	  echo "0 results";
 	}
+
 	if (in_array('true', $rows))
 	{
 		return true;
@@ -71,11 +68,11 @@ function insertData($user_data)
 	mysqli_close($conn);
 }
 
-function updatePassword($new_password, $session_email)
+function updatePassword($new_password, $current_email)
 {
 	$conn = connectDatabase();
 	
-	$sql = 'UPDATE users SET password="'.$new_password.'" WHERE mail="'.$session_email.'"';
+	$sql = 'UPDATE users SET password="'.$new_password.'" WHERE mail="'.$current_email.'"';
 	
 	if (!mysqli_query($conn, $sql)) 
 	{

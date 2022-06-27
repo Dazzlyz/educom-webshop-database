@@ -44,13 +44,13 @@ function getRegisterFields() : array
 									'label' => 'Naam',
 									'field_option' => 'makeTextInput',
 									'required' => 'yes',
-									'validation_type' => 'validateTextfield'								
+									'validation_type' => 'validateDefaultfield'								
 									),
 	'email' 				=>  array('key' => 'mail',
 									'label' => 'E-mail',
 									'field_option' => 'makeTextInput',
 									'required' => 'yes',
-									'validation_type' => 'validateTextfield',
+									'validation_type' => 'validateDefaultfield',
 									'special_validation' => 'checkRegister'
 									
 									),
@@ -58,14 +58,14 @@ function getRegisterFields() : array
 									'label' => 'Wachtwoord',
 									'field_option' => 'makeTextInput',
 									'required' => 'yes',
-									'validation_type' => 'validateTextfield',
+									'validation_type' => 'validateDefaultfield',
 									'special_validation' => 'checkRegister'
 									),	
 	'wachtwoord_controle'	=>  array('key' => 'wachtwoord_controle',
 									'label' => 'Bevestig uw wachtwoord',
 									'field_option' => 'makeTextInput',
 									'required' => 'yes',
-									'validation_type' => 'validateTextfield',
+									'validation_type' => 'validateDefaultfield',
 									'special_validation' => 'checkRegister'
 									),									
 	);		
@@ -78,7 +78,7 @@ function getLoginFields() : array
 									'label' => 'E-mail',
 									'field_option' => 'makeTextInput',
 									'required' => 'yes',
-									'validation_type' => 'validateTextfield',
+									'validation_type' => 'validateDefaultfield',
 									'special_validation' => 'checkLogin'	
 				
 									),
@@ -86,7 +86,7 @@ function getLoginFields() : array
 									'label' => 'Wachtwoord',
 									'field_option' => 'makeTextInput',
 									'required' => 'yes',
-									'validation_type' => 'validateTextfield',
+									'validation_type' => 'validateDefaultfield',
 									'special_validation' => 'checkLogin'
 									),										
 	);		
@@ -106,19 +106,19 @@ function getContactFields() : array
 									'label' => 'Naam',
 									'field_option' => 'makeTextInput',
 									'required' => 'yes',
-									'validation_type' => 'validateTextfield'
+									'validation_type' => 'validateDefaultfield'
 									),
 	'email' 				=>  array('key' => 'mail',
 									'label' => 'E-mail',
 									'field_option' => 'makeTextInput',
 									'required' => 'yes',
-									'validation_type' => 'validateTextfield'
+									'validation_type' => 'validateDefaultfield'
 									),
 	'tel'   				=>  array('key' => 'tel',
 									'label' => 'Telefoonnummer',
 									'field_option' => 'makeTextInput',
 									'required' => 'yes',
-									'validation_type' => 'validateTextfield'
+									'validation_type' => 'validateDefaultfield'
 									),
 	'communicatievoorkeur' 	=> 	array('key' => 'communicatievoorkeur',
 									'label' => 'Communicatievoorkeur',
