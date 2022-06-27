@@ -20,6 +20,7 @@ function connectDatabase()
 // AANZIENLIJK MOOIER MAKEN
 function checkMailEntries($user_data)
 {
+	// hallo test commentaar testsetsetsetset
 	$servername = "127.0.0.1";
 	$username = "access";
 	$password = "Hallo";
