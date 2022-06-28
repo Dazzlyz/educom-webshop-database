@@ -65,7 +65,4 @@ function showThankYou($post_result)
 		}
 	}
 }
-
-
-
 ?>

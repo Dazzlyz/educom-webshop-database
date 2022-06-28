@@ -16,8 +16,7 @@ function handleError($post_result, $key, $error_msg)
 	return $post_result;
 }
 
-//functienaam?
-function checkFringeCases($key, $post_result)
+function checkSpecialCases($key, $post_result)
 {
 	if ($key == 'naam' && (!preg_match("/^[a-zA-Z-' ]*$/",$post_result[$key])))
 	{
@@ -43,7 +42,7 @@ function validateDefaultfield($global_post, $post_result, $key)
 	else 
 	{
 		$post_result[$key] = testInput($global_post[$key]);
-		$post_result = checkFringeCases($key, $post_result);
+		$post_result = checkSpecialCases($key, $post_result);
 	}
 	return $post_result;
 }
