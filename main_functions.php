@@ -10,6 +10,7 @@ require 'generate_body.php';
 require 'menu.php';
 require 'handle_database.php';
 require 'session_manager.php';
+require 'webshop.php';
 
 function getRequest() : array
 {	
@@ -115,6 +116,9 @@ function generateContent($page, $post_result=array())
 		break;		
 		case 'thankyou':
 			showThankYou();
+		break;	
+		case 'webshop':
+			showWebshop();
 		break;	
 		default:
 			generateBody($post_result, $page);

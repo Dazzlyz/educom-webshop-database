@@ -67,6 +67,29 @@ function getUserDataFromDb($user_data) : array
 		}
 	} 	
 }
+
+function getAllProducts()
+{
+	$conn = connectDatabase();
+	$sql = "SELECT id, name, price, filename FROM products";
+	$result = $conn->query($sql);
+	$conn->close();
+	if ($result->num_rows > 0) 
+	{	
+		while($row = $result->fetch_assoc()) 
+		{
+			$complete_array[] = array('id' => $row['id'], 'name' =>  $row['name'], 'price' => $row['price'], 'filename' => $row['filename']);		
+		}
+	}
+	else 
+	{
+		echo "0 results";
+	}	
+	return $complete_array;
+}
+
+
+
 ?> 
 
 

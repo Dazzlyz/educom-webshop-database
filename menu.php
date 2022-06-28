@@ -7,7 +7,8 @@ function getMenuItems(string $username = '') : array
 	$items = [
 		'home'		=> 'Home',
 		'about' 	=> 'About me',
-		'contact' 	=> 'Contact me'
+		'contact' 	=> 'Contact me',
+		'webshop' 	=> 'WebShop'
 	];
 	if ($username)
 	{
