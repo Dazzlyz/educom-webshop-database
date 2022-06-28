@@ -49,16 +49,17 @@ function generateForm($key, $post_result)
 	closeForm();	
 }
 
-function showThankYou($post_result) 
-{
+function showThankYou() 
+{	
 	echo '<h2>Bedankt voor het invoeren! </h2>
 	Uw gegevens: <br>';
-	foreach ($post_result as $key => $value)
+	foreach ($_POST as $key => $value)
 	{
-		if ($key == 'error_counter' || $value == '')
+		if ($key == 'error_counter' || $value == '-' || $key == 'page')
 		{
 			continue;
 		}
+
 		else
 		{
 			echo ''.ucfirst($key).' : '.$value.'<br>';

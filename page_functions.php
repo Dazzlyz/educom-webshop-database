@@ -4,14 +4,18 @@ require 'arrays.php';
 
 function generateHeader($title) 
 {
-	if ($title == 'changepassword')
+	switch ($title)
 	{
-		echo '<h1>Change Password</h1>';
+		case 'changepassword' :
+			echo '<h1>Change Password</h1>';
+		break;
+		case 'thankyou' :
+			echo '<h1>Thank you</h1>';
+		break;
+		default :
+			echo '<h1>' . strtoupper($title) . '</h1>';	
+		break;
 	}
-	else
-	{
-		echo '<h1>' . strtoupper($title) . '</h1>';
-	}	
 }
 
 function generalFooter() 

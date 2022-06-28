@@ -21,8 +21,6 @@ function getRequest() : array
 
 function validateRequest(array $request) : array
 {	
-	// code zou ook moeten werken zonder deze assignment door meegeven waarde
-	$request=getRequest();
     $response = $request;
 
     if ($request['posted'])
@@ -52,12 +50,11 @@ function validateRequest(array $request) : array
 					updateSessionPassword($post_result['nieuw_wachtwoord_controle']);
 					$response['page'] = 'home';
 				}				            			
-                break;	
-			// fix contact laat nu dubbel pagina zien. 
+                break;				
 			case 'contact' :				
 				if (isResultArrayComplete($post_result))
 				{
-					showThankYou($post_result); 
+					$response['page'] = 'thankyou';
 				}					
 				break;	
         }
@@ -115,12 +112,13 @@ function generateContent($page, $post_result=array())
 		break;
 		case 'about' :		
 			aboutText();	
-		break;			
+		break;		
+		case 'thankyou':
+			showThankYou();
+		break;	
 		default:
 			generateBody($post_result, $page);
 		break;		
 	}	
 }
-
-
 ?>

@@ -1,11 +1,5 @@
 <?php 
 
- // gebruiken om eenmalig database te openen? 
- function openDatabase()
- {
-     $_SESSION['conn'] = connectDatabase();	
- }
-
 function makeCheckArray($user_data)
 {
     $_SESSION['check_array'] = array('email' => $user_data['mail'], 'naam' => $user_data['naam'], 'password' => $user_data['password']);
@@ -29,12 +23,4 @@ function logOutUser()
 	$_SESSION['password'] = '';	
     $_SESSION['username']	= '';
 }
-
-
-
-
-
-
-
-
 ?>

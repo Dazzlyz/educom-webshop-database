@@ -17,21 +17,21 @@ function getChangePasswordFields() : array
 									'label' => 'Wachtwoord',
 									'field_option' => 'makeTextInput',
 									'required' => 'yes',
-									'validation_type' => 'validateTextfield',
+									'validation_type' => 'validateDefaultfield',
 									'special_validation' => 'checkCurrentPassword'
 									),	
 	'nieuw_wachtwoord'			=>  array('key' => 'nieuw_wachtwoord',
 									'label' => 'Nieuw wachtwoord',
 									'field_option' => 'makeTextInput',
 									'required' => 'yes',
-									'validation_type' => 'validateTextfield',
+									'validation_type' => 'validateDefaultfield',
 									'special_validation' => 'checkChangePassword'
 									),	
 	'nieuw_wachtwoord_controle'			=>  array('key' => 'nieuw_wachtwoord_controle',
 									'label' => 'Controleer nieuwe wachtwoord',
 									'field_option' => 'makeTextInput',
 									'required' => 'yes',
-									'validation_type' => 'validateTextfield',
+									'validation_type' => 'validateDefaultfield',
 									'special_validation' => 'checkChangePassword'
 									),
 	);

@@ -3,7 +3,7 @@
 function connectDatabase()
 {
 	$servername = "127.0.0.1";
-	$username = "access";
+	$username = "WebShopUser";
 	$password = "Hallo";
 	$dbname = "menno_webshop";
 	$conn = mysqli_connect($servername, $username, $password, $dbname);
@@ -14,43 +14,15 @@ function connectDatabase()
 	}
 	return $conn;
 }
-// AANZIENLIJK MOOIER MAKEN
-// true check oplossen
-// mogelijk voor mail zoeken en error opvangen bij ontbreken? 
+
 function checkMailEntries($user_data)
 {	
 	$conn = connectDatabase();	
-	$sql = 'SELECT id, mail from users';
+	$sql = 'SELECT mail from users WHERE mail="'.$user_data['mail'].'"';
 	$result = mysqli_query($conn, $sql);
 	mysqli_close($conn);
 	
-	if (mysqli_num_rows($result) > 0)
-	{
-		while($row = mysqli_fetch_assoc($result)) 
-		{
-			if ($row['mail'] == $user_data['mail'])
-			{
-				$rows[] = 'true';
-			}	
-			else 
-			{
-				$rows[] = 'false';				
-			}
-		}
-	} 
-	else 
-	{
-	  echo "0 results";
-	}
-
-	if (in_array('true', $rows))
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
+	return (mysqli_num_rows($result) > 0) ? true : false;
 }	
 
 function insertData($user_data)
@@ -64,7 +36,6 @@ function insertData($user_data)
 	{
 		echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 	}
-
 	mysqli_close($conn);
 }
 
@@ -78,8 +49,7 @@ function updatePassword($new_password, $current_email)
 	{
 		echo "Error updating record: " . mysqli_error($conn);
 	}
-
-mysqli_close($conn);
+	mysqli_close($conn);
 }
 
 function getUserDataFromDb($user_data) : array
@@ -95,11 +65,7 @@ function getUserDataFromDb($user_data) : array
 		{
 			return array ('mail' => $row['mail'] , 'naam' =>  $row['name'] , 'password' =>  $row['password'] );			
 		}
-	} 
-	else 
-	{
-	  echo "";
-	}
+	} 	
 }
 ?> 
 

@@ -1,5 +1,4 @@
 <?php
-// nog pagina doorlopen op functies die algemener en zonder herhaling kunnen
 
 function testInput($data) 
 {
@@ -62,8 +61,7 @@ function validateAanhef($global_post, $post_result, $key)
 
 function checkRegister($global_post, $post_result, $key)
 {
-	// onderstaande zou opgelost zijn TESTEN of validatie nog werkt als bedoeld
-	// check klopt, empty check wordt wel 2maal gerunt, later kijken om te fixen	
+	
 	switch ($key)
 	{
 		case 'mail' :		
@@ -146,7 +144,6 @@ function checkChangePassword($global_post, $post_result, $key)
 	return $post_result;
 }
 
-// nadenken over bij deze soort functies array meegeven
 function validatePostData($global_post, $post_result, $key) 
 {	
 	$set_array_key = 'get'.$key.'fields';
