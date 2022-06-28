@@ -25,7 +25,7 @@ function generateHead($page_name)
 {
 	echo '<html lang="nl">
 	<head>
-	<link rel="stylesheet" href="styles/style.css">
+	<link rel="stylesheet" href="CSS/style.css">
 	<title>' . ucfirst($page_name) . '</title>
 	</head>';
 }
