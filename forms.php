@@ -48,19 +48,15 @@ function generateForm($key, $post_result)
 	}		
 	closeForm();	
 }
-
-function showThankYou() 
+// array in arrays plaatsen?
+function showThankYou($post_result) 
 {	
+	$show_thanks_array = ['naam', 'mail', 'tel', 'communicatievoorkeur', 'aanhef', 'bericht'];
 	echo '<h2>Bedankt voor het invoeren! </h2>
 	Uw gegevens: <br>';
-	foreach ($_POST as $key => $value)
-	{
-		if ($key == 'error_counter' || $value == '-' || $key == 'page')
-		{
-			continue;
-		}
-
-		else
+	foreach ($post_result as $key => $value)
+	{		
+		if (in_array($key, $show_thanks_array) && ($value !== ''))
 		{
 			echo ''.ucfirst($key).' : '.$value.'<br>';
 		}

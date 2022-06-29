@@ -1,7 +1,7 @@
 <?php
 
 require 'arrays.php';
-
+// Betere oplossing vinden
 function generateHeader($title) 
 {
 	switch ($title)
@@ -11,6 +11,9 @@ function generateHeader($title)
 		break;
 		case 'thankyou' :
 			echo '<h1>Thank you</h1>';
+		break;
+		case 'shoppingcart' :
+			echo '<h1>Shopping Cart</h1>';
 		break;
 		default :
 			echo '<h1>' . strtoupper($title) . '</h1>';	

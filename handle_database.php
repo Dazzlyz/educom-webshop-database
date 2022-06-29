@@ -87,6 +87,26 @@ function getAllProducts()
 	}	
 	return $complete_array;
 }
+// beter uitlezen
+function getProductDetails($product_name)
+{	
+	$conn = connectDatabase();	
+	$sql = 'SELECT * from products WHERE name="'.$product_name.'"';
+	$result = mysqli_query($conn, $sql);
+	$conn->close();
+	if ($result->num_rows > 0) 
+	{	
+		while($row = $result->fetch_assoc()) 
+		{
+			$complete_array[] = array('description' => $row['description'], 'name' =>  $row['name'], 'price' => $row['price'], 'filename' => $row['filename']);		
+		}
+	}
+	else 
+	{
+		echo "0 results";
+	}	
+	return $complete_array;
+}	
 
 
 

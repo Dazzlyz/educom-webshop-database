@@ -1,17 +1,39 @@
 <?php
+// input submir toevoegen aan wagen alleen tonen bij login.
 function showWebshop()
 {
     $product_array = getAllProducts();
-    // per product 1 array dus 0,1,2,3,4 en per array vier keys, id , name, price, filename
-    echo ' id:'.$product_array['0']['id'].' Product:'.$product_array['0']['name'].'<img src="images/'.$product_array['0']['filename'].'" width="50" height="50"> Price: '.$product_array['0']['price'].' Euro<br>';
+    foreach ($product_array as $product)
+    {
+        echo ' id:'.$product['id'].' Product:'.$product['name'].'
+        <a href="index.php?page='.$product['name'].'">
+        <img src="images/'.$product['filename'].'" width="50" height="50">
+        </a>
+        Price: '.$product['price'].' Euro <input type="submit" value="Toevoegen aan wagen"> <br>'; 
+    }   
+}
+// zorgen in database handler dat er simpler wordt uitgelezen.
+function showDetail($page)
+{
+    $product = getProductDetails($page);
 
-    echo ' id:'.$product_array['1']['id'].' Product:'.$product_array['1']['name'].'<img src="images/'.$product_array['1']['filename'].'" width="50" height="50"> Price: '.$product_array['1']['price'].' Euro<br>';
-    
-    echo ' id:'.$product_array['2']['id'].' Product:'.$product_array['2']['name'].'<img src="images/'.$product_array['2']['filename'].'" width="50" height="50"> Price: '.$product_array['2']['price'].' Euro<br>';
-    
-    echo ' id:'.$product_array['3']['id'].' Product:'.$product_array['3']['name'].'<img src="images/'.$product_array['3']['filename'].'" width="50" height="50"> Price: '.$product_array['3']['price'].' Euro<br>';
-    
-    echo ' id:'.$product_array['4']['id'].' Product:'.$product_array['4']['name'].'<img src="images/'.$product_array['4']['filename'].'" width="50" height="50"> Price: '.$product_array['4']['price'].' Euro<br>';
+    echo 'Product:'.$product[0]['name'].' <br>
+    <img src="images/'.$product[0]['filename'].'" width="200" height="200"><br>
+    Description: '.$product[0]['description'].' <br>
+    Price: '.$product[0]['price'].' Euro <br>
+    <form method="post" action="index.php">
+    <input type="hidden" name="page" value="'.$product[0]['name'].'" />
+    <input type="hidden" name="price" value="'.$product[0]['price'].'" />
+        <input type="submit" name="add_to_cart" value="Toevoegen aan winkelwagen" />';    
+}  
+
+function addToCart($product)
+{   
+    return array('name' => $product['page'], 'price' => $product['price']);     
 }
 
+function showCart()
+{   
+    echo $_SESSION['shoppingcart']['name'];
+}
 ?>

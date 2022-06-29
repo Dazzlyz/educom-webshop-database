@@ -7,12 +7,12 @@ function getMenuItems(string $username = '') : array
 	$items = [
 		'home'		=> 'Home',
 		'about' 	=> 'About me',
-		'contact' 	=> 'Contact me',
-		'webshop' 	=> 'WebShop'
+		'contact' 	=> 'Contact me',	
+		'webshop' => 'WebShop'	
 	];
 	if ($username)
 	{
-		return array_merge($items, ['logout' => 'Logout '.$username, 'changepassword' => 'Change Password']);
+		return array_merge($items, ['shoppingcart' => 'Shopping Cart', 'logout' => 'Logout '.$username,  'changepassword' => 'Change Password']);
 	}
 	return array_merge($items, ['login' => 'Login', 'register' => 'Register']);
 }

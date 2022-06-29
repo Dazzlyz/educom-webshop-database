@@ -19,47 +19,50 @@ function getRequest() : array
 	return array ('posted' => $posted,
 				  'page' => $page);	
 }
-
+// array oplossing? Mogelijk nog in arrays plaatsen? 
 function validateRequest(array $request) : array
 {	
     $response = $request;
-
+	// uiterraard een stuk efficienter maken.
+	// add to cart aanroepen met prijs en naam meegegeven
     if ($request['posted'])
-    {		
-		$post_result = validatePostData($_POST, $post_result=array(), $request['page']);	
-        switch ($request['page'])
-        {			
-            case 'login' :					
-				if (isResultArrayComplete($post_result))
-				{
-					logInUser();	
-					$response['page'] = 'home';
-				}				    			
-                break;
-			case 'register' :				
-				if (isResultArrayComplete($post_result))
-				{											
-					insertData($post_result);
-					$response['page'] = 'login';
-				}				             			
-                break;
-			case 'changepassword' :			
-							
-				if (isResultArrayComplete($post_result))
-				{		
-					updatePassword($post_result['nieuw_wachtwoord_controle'], $_SESSION['email']);
-					updateSessionPassword($post_result['nieuw_wachtwoord_controle']);
-					$response['page'] = 'home';
-				}				            			
-                break;				
-			case 'contact' :				
-				if (isResultArrayComplete($post_result))
-				{
-					$response['page'] = 'thankyou';
-				}					
-				break;	
-        }
-    }
+    {	
+		$tijdelijk_array = array('orange', 'apple', 'grape', 'kiwi', 'banana');
+		if (in_array($request['page'] , $tijdelijk_array))
+		{
+			manageCart($_POST);		
+			$response['page'] = 'shoppingcart';
+		}	
+		else 
+		{
+			$post_result = validatePostData($_POST, $post_result=array(), $request['page']);	
+			switch ($request['page'])
+			{			
+				case 'login' :					
+					if (isResultArrayComplete($post_result))
+					{
+						logInUser();	
+						$response['page'] = 'home';
+					}				    			
+					break;
+				case 'register' :				
+					if (isResultArrayComplete($post_result))
+					{											
+						insertData($post_result);
+						$response['page'] = 'login';
+					}				             			
+					break;
+				case 'changepassword' :									
+					if (isResultArrayComplete($post_result))
+					{		
+						updatePassword($post_result['nieuw_wachtwoord_controle'], $_SESSION['email']);
+						updateSessionPassword($post_result['nieuw_wachtwoord_controle']);
+						$response['page'] = 'home';
+					}				            			
+					break;						
+			}
+		}  
+	}  
     else
     {
         switch ($request['page'])
@@ -67,7 +70,7 @@ function validateRequest(array $request) : array
             case 'logout' :
                 logOutUser();
                 $response['page'] = 'home';
-                break;
+                break;				
         }
     }
     return $response;
@@ -103,26 +106,35 @@ function getRequestedPage()
     }   
    return $requested_page; 
 }
-
+// array oplossing? Mogelijk nog in arrays plaatsen? 
 function generateContent($page, $post_result=array())
 {
-	switch ($page)
+	$tijdelijk_array = array('orange', 'apple', 'grape', 'kiwi', 'banana');
+	if (in_array($page , $tijdelijk_array))
 	{
-		case 'home' :
-			homeText();				
-		break;
-		case 'about' :		
-			aboutText();	
-		break;		
-		case 'thankyou':
-			showThankYou();
-		break;	
-		case 'webshop':
-			showWebshop();
-		break;	
-		default:
-			generateBody($post_result, $page);
-		break;		
-	}	
+		showDetail($page);
+	}
+	else 
+	{
+		switch ($page)
+		{
+			case 'home' :
+				homeText();				
+			break;
+			case 'about' :		
+				aboutText();	
+			break;		
+				
+			case 'webshop':
+				showWebshop();
+			break;	
+			case 'shoppingcart' :
+				showCart();
+			break;
+			default:
+				generateBody($post_result, $page);
+			break;		
+		}	
+	}
 }
 ?>

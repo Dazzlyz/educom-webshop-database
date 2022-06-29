@@ -23,4 +23,19 @@ function logOutUser()
 	$_SESSION['password'] = '';	
     $_SESSION['username']	= '';
 }
+
+function manageCart($post)
+{
+    if (!isset($_SESSION['shoppingcard']))
+    {
+        $_SESSION['shoppingcard'] = addToCart($post);
+    }
+    // wordt INT ?!?!?!
+    else 
+    {
+        $push_array =  $_SESSION['shoppingcard'];
+        $_SESSION['shoppingcard'] = array_merge($push_array, addToCart($post));    
+    }
+}
+
 ?>
