@@ -1,0 +1,40 @@
+<mxfile host="app.diagrams.net" modified="2022-06-29T07:05:25.492Z" agent="5.0 (Windows)" etag="nZgDFbh9ePZgxPk_goJD" version="20.0.3" type="github">
+  <diagram id="X_NH1U5W-FQs7NmptLq2" name="Page-1">
+    <mxGraphModel dx="2062" dy="1140" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="KSbea8NdTIS128RvNNxH-1" value="&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Email&lt;/div&gt;&lt;div&gt;Username&lt;/div&gt;&lt;div&gt;Password&lt;br&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
+          <mxGeometry x="300" y="80" width="100" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="KSbea8NdTIS128RvNNxH-2" value="Sessie" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="300" y="80" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="KSbea8NdTIS128RvNNxH-3" value="&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Id &lt;br&gt;&lt;/div&gt;&lt;div&gt;Name&lt;/div&gt;&lt;div&gt;Description&lt;/div&gt;&lt;div&gt;Price&lt;/div&gt;&lt;div&gt;Filename&lt;br&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
+          <mxGeometry x="300" y="200" width="100" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="KSbea8NdTIS128RvNNxH-4" value="Product" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="300" y="200" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="KSbea8NdTIS128RvNNxH-5" value="&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Id &lt;br&gt;&lt;/div&gt;&lt;div&gt;Name&lt;/div&gt;&lt;div&gt;Price&lt;/div&gt;&lt;div&gt;Filename&lt;br&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
+          <mxGeometry x="440" y="200" width="100" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="KSbea8NdTIS128RvNNxH-6" value="Webshop" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="440" y="200" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="KSbea8NdTIS128RvNNxH-8" value="&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Product&lt;br&gt;&lt;/div&gt;&lt;div&gt;Quantity&lt;br&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
+          <mxGeometry x="600" y="200" width="100" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="KSbea8NdTIS128RvNNxH-9" value="Shopping cart" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="600" y="200" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="KSbea8NdTIS128RvNNxH-12" value="&lt;div&gt;Product&lt;/div&gt;&lt;div&gt;Quantity&lt;br&gt;&lt;/div&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
+          <mxGeometry x="600" y="360" width="100" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="KSbea8NdTIS128RvNNxH-13" value="Order" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="600" y="360" width="100" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
