@@ -2,7 +2,7 @@
 
 function makeCheckArray($user_data)
 {
-    $_SESSION['check_array'] = array('email' => $user_data['mail'], 'naam' => $user_data['naam'], 'password' => $user_data['password']);
+    $_SESSION['check_array'] = array('email' => $user_data['mail'], 'naam' => $user_data['name'], 'password' => $user_data['password']);
 }
 
 function logInUser()

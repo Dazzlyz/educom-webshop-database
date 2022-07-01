@@ -1,115 +1,131 @@
  <?php
-
+// Exceptions voor nieuwe database functies goed bewaken! 
 function connectDatabase()
 {
-	$servername = "127.0.0.1";
-	$username = "WebShopUser";
-	$password = "Hallo";
-	$dbname = "menno_webshop";
-	$conn = mysqli_connect($servername, $username, $password, $dbname);
+    $servername = "127.0.0.1";
+    $username = "WebShopUser";
+    $password = "Hallo";
+    $dbname = "menno_webshop";
+    $conn = mysqli_connect($servername, $username, $password, $dbname);
 
-	if (!$conn) 
-	{
-		die("Connection failed: " . mysqli_connect_error());
-	}
-	return $conn;
+    if (!$conn) 
+    {
+        throw new Exception('Database connection error, please try again');
+    }
+    return $conn;
 }
 
-function checkMailEntries($user_data)
-{	
-	$conn = connectDatabase();	
-	$sql = 'SELECT mail from users WHERE mail="'.$user_data['mail'].'"';
-	$result = mysqli_query($conn, $sql);
-	mysqli_close($conn);
-	
-	return (mysqli_num_rows($result) > 0) ? true : false;
+function checkMailEntries($email)
+{	    
+    $conn = connectDatabase();	
+    $checked_email =  mysqli_real_escape_string($conn, $email);
+    
+    $sql = 'SELECT mail from users WHERE mail="'.$checked_email.'"';
+    $result = mysqli_query($conn, $sql);
+    
+    checkQuery($conn, $sql, 'Error getting mail from database, please try again');        
+    mysqli_close($conn);    
+    return (mysqli_num_rows($result) > 0) ? true : false;   
 }	
 
-function insertData($user_data)
-{
-	$conn = connectDatabase();
-	
-	$sql = 'INSERT INTO users(mail, name, password)	
-	VALUES ("'.$user_data['mail'].'", "'.$user_data['naam'].'" , "'.$user_data['wachtwoord'].'")';
-
-	if (!mysqli_query($conn, $sql)) 
-	{
-		echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-	}
-	mysqli_close($conn);
+function insertData($email, $name, $password)
+{	
+    $conn = connectDatabase();
+    $checked_email =  mysqli_real_escape_string($conn, $email);
+    $checked_name = mysqli_real_escape_string($conn, $name);
+    $checked_password = mysqli_real_escape_string($conn, $password);
+    
+    $sql = 'INSERT INTO users(mail, name, password)	
+    VALUES ("'.$checked_email.'", "'.$checked_name.'" , "'.$checked_password.'")';
+    
+    checkQuery($conn, $sql, 'Error entering new user');    
+    mysqli_close($conn);
 }
 
 function updatePassword($new_password, $current_email)
-{
-	$conn = connectDatabase();
-	
-	$sql = 'UPDATE users SET password="'.$new_password.'" WHERE mail="'.$current_email.'"';
-	
-	if (!mysqli_query($conn, $sql)) 
-	{
-		echo "Error updating record: " . mysqli_error($conn);
-	}
-	mysqli_close($conn);
+{	
+    $conn = connectDatabase();
+    $checked_password = mysqli_real_escape_string($conn, $new_password);
+    $checked_email =  mysqli_real_escape_string($conn, $current_email);
+    
+    $sql = 'UPDATE users SET password="'.$checked_password.'" WHERE mail="'.$checked_email.'"';
+    
+    checkQuery($conn, $sql, 'Error entering new password');    
+    mysqli_close($conn);	
 }
 
-function getUserDataFromDb($user_data) : array
-{
-	$conn = connectDatabase();
-
-	$sql = 'SELECT mail, name, password FROM users WHERE mail ="'.$user_data['mail'].'"';
-	$result = mysqli_query($conn, $sql);
-	mysqli_close($conn);
-	if (mysqli_num_rows($result) > 0) 
-	{	 	
-		while($row = mysqli_fetch_assoc($result)) 
-		{
-			return array ('mail' => $row['mail'] , 'naam' =>  $row['name'] , 'password' =>  $row['password'] );			
-		}
-	} 	
+function getUserDataFromDb($email) 
+{	
+    $conn = connectDatabase();
+    $checked_email =  mysqli_real_escape_string($conn, $email);
+    
+    $sql = 'SELECT mail, name, password FROM users WHERE mail ="'.$checked_email.'"';
+    $result = mysqli_query($conn, $sql);	
+    
+    checkQuery($conn, $sql, 'Error no entry found for this account, please try again');    
+    if($row = mysqli_fetch_assoc($result)) 
+    {
+        mysqli_close($conn);
+        return $row;	
+    }	
 }
 
+function getAllProductInfo()
+{	
+    $conn = connectDatabase();
+    
+    $sql = "SELECT id, name, price, filename FROM products";
+    $result = mysqli_query($conn, $sql);
+    
+    checkQuery($conn, $sql, 'Error loading products, please refresh page');    
+    $complete_array = array();
+    while($row = $result->fetch_assoc()) 
+    {
+        $complete_array[] = $row;		
+    }
+    mysqli_close($conn);
+    return $complete_array;
+}
+
+function getProductDetails($product_name)
+{		
+    $conn = connectDatabase();	
+    
+    $sql = 'SELECT * from products WHERE name="'.$product_name.'"';
+    $result = mysqli_query($conn, $sql);
+    
+    checkQuery($conn, $sql, 'Error loading product details, please refresh page or try another product');   
+    if($row = $result->fetch_assoc()) 
+    {
+        mysqli_close($conn);	
+        return $row;	
+    }	
+}	
+// Beter fetchen?
 function getAllProducts()
 {
-	$conn = connectDatabase();
-	$sql = "SELECT id, name, price, filename FROM products";
-	$result = $conn->query($sql);
-	$conn->close();
-	if ($result->num_rows > 0) 
-	{	
-		while($row = $result->fetch_assoc()) 
-		{
-			$complete_array[] = array('id' => $row['id'], 'name' =>  $row['name'], 'price' => $row['price'], 'filename' => $row['filename']);		
-		}
-	}
-	else 
-	{
-		echo "0 results";
-	}	
-	return $complete_array;
+    $conn = connectDatabase();	
+
+    $sql = 'SELECT name from products';
+    $result = mysqli_query($conn, $sql);
+    
+    checkQuery($conn, $sql, 'Error loading database, please try later');  
+    $complete_array = array();
+    while($row = mysqli_fetch_assoc($result)) 
+    {
+        $complete_array[] = $row;		
+    }
+    mysqli_close($conn);
+    return $complete_array;  
 }
-// beter uitlezen
-function getProductDetails($product_name)
-{	
-	$conn = connectDatabase();	
-	$sql = 'SELECT * from products WHERE name="'.$product_name.'"';
-	$result = mysqli_query($conn, $sql);
-	$conn->close();
-	if ($result->num_rows > 0) 
-	{	
-		while($row = $result->fetch_assoc()) 
-		{
-			$complete_array[] = array('description' => $row['description'], 'name' =>  $row['name'], 'price' => $row['price'], 'filename' => $row['filename']);		
-		}
-	}
-	else 
-	{
-		echo "0 results";
-	}	
-	return $complete_array;
-}	
 
-
-
+function checkQuery($conn, $sql, $err_msg)
+{
+    if (!mysqli_query($conn, $sql)) 
+    {
+        throw new Exception($err_msg);
+    }
+}
 ?> 
 
 

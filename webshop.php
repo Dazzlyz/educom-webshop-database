@@ -1,31 +1,47 @@
 <?php
-// input submir toevoegen aan wagen alleen tonen bij login.
+// input submit onderaan op de juiste plek weergeven
+
 function showWebshop()
-{
-    $product_array = getAllProducts();
+{    
+    $product_array = getAllProductInfo();
     foreach ($product_array as $product)
     {
         echo ' id:'.$product['id'].' Product:'.$product['name'].'
         <a href="index.php?page='.$product['name'].'">
         <img src="images/'.$product['filename'].'" width="50" height="50">
         </a>
-        Price: '.$product['price'].' Euro <input type="submit" value="Toevoegen aan wagen"> <br>'; 
-    }   
+        Price: '.$product['price'].' Euro <br>'.showAddToCart(getArrayVar($_SESSION, 'username', ''), $product).''; 
+    }         
 }
-// zorgen in database handler dat er simpler wordt uitgelezen.
-function showDetail($page)
-{
-    $product = getProductDetails($page);
 
-    echo 'Product:'.$product[0]['name'].' <br>
-    <img src="images/'.$product[0]['filename'].'" width="200" height="200"><br>
-    Description: '.$product[0]['description'].' <br>
-    Price: '.$product[0]['price'].' Euro <br>
-    <form method="post" action="index.php">
-    <input type="hidden" name="page" value="'.$product[0]['name'].'" />
-    <input type="hidden" name="price" value="'.$product[0]['price'].'" />
-        <input type="submit" name="add_to_cart" value="Toevoegen aan winkelwagen" />';    
+function showDetail($page)
+{    
+    $product = getProductDetails($page);
+    if (empty($product))
+    {
+        echo '0 results';
+    }
+    else
+    {
+        echo 'Product:'.$product['name'].' <br>
+        <img src="images/'.$product['filename'].'" width="200" height="200"><br>
+        Description: '.$product['description'].' <br>
+        Price: '.$product['price'].' Euro <br>
+        <form method="post" action="index.php">
+        '.showAddToCart(getArrayVar($_SESSION, 'username', ''), $product).'';
+    }   
 }  
+
+function showAddToCart($username= '', $product)
+{
+    if ($username)
+    {
+        echo '<input type="hidden" name="page" value="'.$product['name'].'" />
+        <input type="hidden" name="price" value="'.$product['price'].'" />
+        <input type="submit" name="add_to_cart" value="Toevoegen aan winkelwagen" />';   
+    }
+    
+}
 
 function addToCart($product)
 {   
@@ -34,6 +50,6 @@ function addToCart($product)
 
 function showCart()
 {   
-    echo $_SESSION['shoppingcart']['name'];
+    echo 'WORK IN PROGRESS';
 }
 ?>
