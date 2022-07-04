@@ -9,7 +9,8 @@ function logInUser()
 {
     $_SESSION['email'] = $_SESSION['check_array']['email'];
 	$_SESSION['password'] = $_SESSION['check_array']['password'];	
-	$_SESSION['username'] = $_SESSION['check_array']['naam'];		
+	$_SESSION['username'] = $_SESSION['check_array']['naam'];	
+    $_SESSION['shoppingcart'] = [];       
 }
 
 function updateSessionPassword($new_password)
@@ -22,21 +23,31 @@ function logOutUser()
     $_SESSION['email'] = '';
 	$_SESSION['password'] = '';	
     $_SESSION['username']	= '';
+    $_SESSION['shoppingcart'] = [];
 }
 
-function manageCart($post)
+function emptyShoppingCart()
 {
-    // if (!isset($_SESSION['shoppingcard']))
-    // {
-    //     $_SESSION['shoppingcard'] = addToCart($post);
-    // }
-    // // wordt INT ?!?!?!
-    // else 
-    // {
-    //     $push_array =  $_SESSION['shoppingcard'];
-    //     $_SESSION['shoppingcard'] = array_merge($push_array, addToCart($post));    
-    // }
-    echo 'placeholder, functie werkt nog niet';
+    $_SESSION['shoppingcart'] = [];
 }
 
+function manageCart($post)    
+ {        
+    $product = $post['page'];
+    $fruit_array = array();
+    foreach($_SESSION['shoppingcart'] as $fruit => $values)
+    {
+        array_push($fruit_array, $fruit);
+    }
+
+    if (in_array($product, $fruit_array))
+    {        
+        $_SESSION['shoppingcart'][$product]['quantity'] += 1;
+    }
+    else
+    {        
+        $new_data =  addToCart($post);      
+        $_SESSION['shoppingcart'] = array_merge( $_SESSION['shoppingcart'], $new_data); 
+    }
+}
 ?>

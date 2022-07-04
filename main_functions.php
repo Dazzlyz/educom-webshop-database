@@ -25,18 +25,19 @@ function validateRequest() : array
 {	
     $request = getRequest();
     $response = $request;	
-    // add to cart aanroepen met prijs en naam meegegeven
-    if ($request['posted'])
-    {			
-        if (in_array($request['page'] , getAvailableProducts()))
-        {
-            manageCart($_POST);		
-            $response['page'] = 'shoppingcart';
-        }	
-        else 
-        {          
-            try
-            {    
+    try
+    { 	   
+    
+        if ($request['posted'])
+        {	   
+            if (in_array($request['page'] , getAvailableProducts()))
+            {
+                manageCart($_POST);		
+                header('Location: http://localhost/educom-webshop-database/index.php?page=shoppingcart');
+            }	       
+            else 
+            {          
+                
                 $post_result = validatePostData($_POST, $post_result=array(), $request['page']);	
                 
                 switch ($request['page'])
@@ -47,14 +48,14 @@ function validateRequest() : array
                             logInUser();	
                             $response['page'] = 'home';
                         }				    			
-                        break;
+                    break;
                     case 'register' :				
                         if (isResultArrayComplete($post_result))
                         {	                           										
                             insertData($post_result['mail'], $post_result['naam'], $post_result['wachtwoord'] );                       						
-                          	$response['page'] = 'login';
+                            $response['page'] = 'login';
                         }				             			
-                        break;
+                    break;
                     case 'changepassword' :									
                         if (isResultArrayComplete($post_result))
                         {		
@@ -62,24 +63,35 @@ function validateRequest() : array
                             updateSessionPassword($post_result['nieuw_wachtwoord_controle']);
                             $response['page'] = 'home';
                         }				            			
-                        break;		
-                }            
+                    break;   
+                }        
             }
-            catch(Exception $e)
+        
+        }            
+        else
+        {           	                
+            switch ($request['page'])
             {
-                echo $e->getMessage();
+                case 'logout' :
+                    logOutUser();
+                    $response['page'] = 'home';
+                break;	
+                case 'cleancart' :
+                    emptyShoppingCart(); 
+                    $response['page'] = 'webshop';    
+                break;
+                case 'afrekenen' :
+                    
+                    addOrder();
+                    emptyShoppingCart();                
+                    header('Location: http://localhost/educom-webshop-database/index.php?page=home'); 
+                break;        
             }
-        }  
-    }  
-    else
-    {
-        switch ($request['page'])
-        {
-            case 'logout' :
-                logOutUser();
-                $response['page'] = 'home';
-                break;				
         }
+    }   
+    catch(Exception $e)
+    {
+        echo $e->getMessage();
     }
     return $response;
 }
@@ -105,8 +117,8 @@ function getRequestedPage()
 {     
     $requested_type = $_SERVER['REQUEST_METHOD']; 
     if ($requested_type == 'POST') 
-    { 
-        $requested_page = getPostVar('page','home'); 				
+    {         
+        $requested_page = getPostVar('page','home');	  
     } 
     else 
     { 
@@ -130,16 +142,16 @@ function generateContent($page, $post_result=array())
                 case 'home' :
                     homeText();				
                 break;
-                case 'about' :		
+                case 'about' :                                   
                     aboutText();	
-                break;		
-                    
+                break;                   
                 case 'webshop':                   
-                        showWebshop();            
+                    showWebshop();            
                 break;	
                 case 'shoppingcart' :
                     showCart();
                 break;
+              
                 default:
                     generateBody($post_result, $page);
                 break;		

@@ -9,12 +9,18 @@ function getAanhefOptions() : array
 {
     return array('-', 'Dhr', 'Mvr');
 }
-// Beter array maken nog
+
 function getAvailableProducts() : array
 {   
-   $all_products = getAllProducts();
-   return array ($all_products[0]['name'], $all_products[1]['name'], $all_products[2]['name'], $all_products[3]['name'], 
-   $all_products[4]['name']);    
+    $all_products = getAllProductInfo();
+    $all_array = [];
+
+    foreach ($all_products as $product)
+    {
+        $all_array[] = $product['name'];
+    }
+
+   return $all_array;
 }
 
 function showThanksArray() : array
@@ -146,7 +152,6 @@ function getContactFields() : array
                                     'required' => 'yes',
                                     'validation_type' => 'validateDefaultfield'
                                     ),
-    );		
-}
-
+    );	
+}	
 ?>

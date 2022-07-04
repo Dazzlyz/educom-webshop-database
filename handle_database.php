@@ -101,23 +101,6 @@ function getProductDetails($product_name)
         return $row;	
     }	
 }	
-// Beter fetchen?
-function getAllProducts()
-{
-    $conn = connectDatabase();	
-
-    $sql = 'SELECT name from products';
-    $result = mysqli_query($conn, $sql);
-    
-    checkQuery($conn, $sql, 'Error loading database, please try later');  
-    $complete_array = array();
-    while($row = mysqli_fetch_assoc($result)) 
-    {
-        $complete_array[] = $row;		
-    }
-    mysqli_close($conn);
-    return $complete_array;  
-}
 
 function checkQuery($conn, $sql, $err_msg)
 {
@@ -126,6 +109,22 @@ function checkQuery($conn, $sql, $err_msg)
         throw new Exception($err_msg);
     }
 }
+
+// kijken of functie/ database nog te schrijven is op een manier waar orders aan naam gekoppeld worden / 1 regel per complete order
+function addOrder()
+{		
+    $conn = connectDatabase();	   
+    $checked_mail = mysqli_real_escape_string($conn, $_SESSION['email']);   
+
+    foreach($_SESSION['shoppingcart'] as $fruit => $values)
+    {
+        $sql = 'INSERT INTO orders(product, quantity, user)          
+        VALUES("'.$fruit.'", "'.$values['quantity'].'" , "'.$checked_mail.'")';
+        checkQuery($conn, $sql, 'Error entering order please try again');    
+    }
+    
+    mysqli_close($conn);
+}	
 ?> 
 
 

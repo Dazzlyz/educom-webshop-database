@@ -147,8 +147,8 @@ function checkChangePassword($global_post, $post_result, $key)
 function validatePostData($global_post, $post_result, $key) 
 {	
     $set_array_key = 'get'.$key.'fields';
-    $post_result['error_counter'] = 0;	
-    
+    $post_result['error_counter'] = 0;	    
+   
     foreach ($formfields = $set_array_key() as $key => $info)
     {			
         $post_result = $info['validation_type']($global_post, $post_result, $info['key']);	
