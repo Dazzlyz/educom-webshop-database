@@ -1,6 +1,5 @@
 <?php
 
-// Betere oplossing vinden
 function generateHeader($title) 
 {
     switch ($title)

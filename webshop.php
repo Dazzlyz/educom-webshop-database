@@ -1,32 +1,25 @@
 <?php
 // 02-C: Opdracht 3.2 optineel nog toevoegen? (op shoppingcart pagina increment optie bieden)
 
-// add to cart triggert hier altijd op 'page = orange'?
-// niet goed gelinkt aan dat product, pakt laatste op de pagina
-// nog fixen dat add to cart ook op hoofd pagina webshop kan
 function showWebshop()
 {       
-    $product_array = getAllProductInfo();    
+    $product_array = getAllProductInfo();   
         
     foreach ($product_array as $product)
     {
-        echo '<form method="post" action="index.php">
+        echo '
         <br>id:'.$product['id'].' Product:'.$product['name'].'
-        <a href="index.php?page='.$product['name'].'">
+        <a href="index.php?page=detail&product='.$product['name'].'">
         <img src="images/'.$product['filename'].'" width="50" height="50"> </a>       
-        Price: '.$product['price'].' Euro'; 
-        if (getArrayVar($_SESSION, 'username', ''))
-        {
-            echo '<input type="hidden" name="page" value="'.$product['name'].'" />
-            <input type="hidden" name="price" value="'.$product['price'].'" />
-            <button type="submit" name="add_to_cart">Toevoegen aan winkelwagen</button><br>';    
-        }
+        Price: '.$product['price'].' Euro';         
+        checkAddToCart($product);       
     }            
 }
 
 function showDetail($page)
-{    
-    $product = getProductDetails($page);
+{      
+    $placeholder = getProductDetails($page);
+    $product = getProductFromId($placeholder['id']);
     if (empty($product))
     {
         echo '0 results';
@@ -38,19 +31,27 @@ function showDetail($page)
         <img src="images/'.$product['filename'].'" width="200" height="200"><br>
         Description: '.$product['description'].'
         Price: '.$product['price'].' Euro <br>';  
-        if (getArrayVar($_SESSION, 'username', ''))
-        {
-            echo '<input type="hidden" name="page" value="'.$product['name'].'" />
-            <input type="hidden" name="price" value="'.$product['price'].'" />
-            <input type="submit" name="add_to_cart" value="Toevoegen aan winkelwagen" />';           
-        }       
+        checkAddToCart($product);
     }   
 }  
 
+function checkAddToCart($product)
+{
+    if (getArrayVar($_SESSION, 'username', ''))
+        {
+            echo '<form method="post" action="index.php">
+            <input type="hidden" name="page" value="'.$product['name'].'" />           
+            <input type="hidden" name="price" value="'.$product['price'].'" />
+            <input type="hidden" name="id" value="'.$product['id'].'" />
+            <input type="submit" name="add_to_cart" value="Toevoegen aan winkelwagen" />
+            </form>';           
+        }
+}
+
 function addToCart($product)
-{   
-    
-    return array($product['page'] => array ('price' => $product['price'], 'quantity' => 1));     
+{       
+    $database_result = getProductFromId($product['id']);
+    return array($database_result['name'] => array('price' => $database_result['price'], 'quantity' => 1));     
 }
 
 function showCart()
@@ -59,7 +60,7 @@ function showCart()
     {   
         $total = 0;
         foreach ($_SESSION['shoppingcart'] as $fruit => $values)
-        {
+        {            
             if ($values['quantity'] > 0)
             {
                 $product_price = $values['price'] * $values['quantity'];
@@ -68,18 +69,14 @@ function showCart()
                 $total +=  $product_price;
             }
         }
-        echo 'Total price: '.$total.' Euro';
-        echo '<a href="index.php?page=afrekenen">
+        echo 'Total price: '.$total.' Euro
+        <a href="index.php?page=afrekenen">
         <p>Afrekenen</p>
-        </a>
-        <a href="index.php?page=cleancart">
-        <p>Start over</p>
-        </a>';
-       
+        </a>';       
     }
     else
     {
-        echo 'Shopping Cart is empty, go to the webshop to add some items!';
+        echo 'Shopping Cart is empty, go to the <a href="index.php?page=webshop">webshop</a> to add some items!';
     }    
 }
 ?>

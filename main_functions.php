@@ -75,13 +75,11 @@ function validateRequest() : array
                 case 'logout' :
                     logOutUser();
                     $response['page'] = 'home';
-                break;	
-                case 'cleancart' :
-                    emptyShoppingCart(); 
-                    $response['page'] = 'webshop';    
                 break;
-                case 'afrekenen' :
-                    
+                case 'detail' :
+                    $response['page'] =  getUrlVar('product','home');
+                    break;
+                case 'afrekenen' :                    
                     addOrder();
                     emptyShoppingCart();                
                     header('Location: http://localhost/educom-webshop-database/index.php?page=home'); 
@@ -130,7 +128,7 @@ function getRequestedPage()
 function generateContent($page, $post_result=array())
 {	
     try
-    {
+    {        
         if (in_array($page , getAvailableProducts()))
         {           
             showDetail($page);      

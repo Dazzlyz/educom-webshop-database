@@ -102,6 +102,20 @@ function getProductDetails($product_name)
     }	
 }	
 
+function getProductFromId($id)
+{
+    $conn = connectDatabase();
+    $sql = 'SELECT * from products WHERE id="'.$id.'"';
+    $result = mysqli_query($conn, $sql);
+
+    checkQuery($conn, $sql, 'Error loading product details, please refresh page or try another product'); 
+    if($row = $result->fetch_assoc()) 
+    {
+        mysqli_close($conn);	
+        return $row;	
+    }	  
+}
+
 function checkQuery($conn, $sql, $err_msg)
 {
     if (!mysqli_query($conn, $sql)) 
@@ -109,6 +123,7 @@ function checkQuery($conn, $sql, $err_msg)
         throw new Exception($err_msg);
     }
 }
+
 
 // kijken of functie/ database nog te schrijven is op een manier waar orders aan naam gekoppeld worden / 1 regel per complete order
 function addOrder()
