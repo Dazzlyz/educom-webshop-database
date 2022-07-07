@@ -124,7 +124,6 @@ function checkQuery($conn, $sql, $err_msg)
     }
 }
 
-
 // kijken of functie/ database nog te schrijven is op een manier waar orders aan naam gekoppeld worden / 1 regel per complete order
 function addOrder()
 {		

@@ -64,8 +64,17 @@ function showCart()
             if ($values['quantity'] > 0)
             {
                 $product_price = $values['price'] * $values['quantity'];
-                echo $fruit . ' selected: ' . $values['quantity'] . ' Price: '.  $product_price .'                 
-                <br>'; // enter button of increase / decrease optie voor deze line break
+                echo $fruit . ' selected: ' . $values['quantity'] . ' Price: '.  $product_price .' 
+                <form method="post" action="index.php">
+                <input type="hidden" name="page" value="'.$fruit.'" />         
+                <input type="submit" name="increase" value="+" /> </form> 
+                <form method="post" action="index.php">
+                <input type="hidden" name="page" value="'.$fruit.'" />         
+                <input type="submit" name="decrease" value="-" /> </form> <br>';
+                
+                
+                
+                // enter button of increase / decrease optie voor deze line break
                 $total +=  $product_price;
             }
         }

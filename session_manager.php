@@ -33,15 +33,19 @@ function emptyShoppingCart()
 
 function manageCart($post)    
  {        
-    $product = $post['page'];
+    $product = $post['page'];   
     $fruit_array = array();
     foreach($_SESSION['shoppingcart'] as $fruit => $values)
     {
         array_push($fruit_array, $fruit);
     }
-
-    if (in_array($product, $fruit_array))
+    // DEZE BEKIJKEN
+    if ($post['decrease'] == '-')
     {        
+        $_SESSION['shoppingcart'][$product]['quantity'] -= 1;
+    }
+    if (in_array($product, $fruit_array))    
+    {    
         $_SESSION['shoppingcart'][$product]['quantity'] += 1;
     }
     else

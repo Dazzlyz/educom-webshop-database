@@ -36,8 +36,7 @@ function validateRequest() : array
                 header('Location: http://localhost/educom-webshop-database/index.php?page=shoppingcart');
             }	       
             else 
-            {          
-                
+            {      
                 $post_result = validatePostData($_POST, $post_result=array(), $request['page']);	
                 
                 switch ($request['page'])
