@@ -87,21 +87,6 @@ function getAllProductInfo()
     return $complete_array;
 }
 
-function getProductDetails($product_name)
-{		
-    $conn = connectDatabase();	
-    
-    $sql = 'SELECT * from products WHERE name="'.$product_name.'"';
-    $result = mysqli_query($conn, $sql);
-    
-    checkQuery($conn, $sql, 'Error loading product details, please refresh page or try another product');   
-    if($row = $result->fetch_assoc()) 
-    {
-        mysqli_close($conn);	
-        return $row;	
-    }	
-}	
-
 function getProductFromId($id)
 {
     $conn = connectDatabase();
@@ -124,18 +109,24 @@ function checkQuery($conn, $sql, $err_msg)
     }
 }
 
-// kijken of functie/ database nog te schrijven is op een manier waar orders aan naam gekoppeld worden / 1 regel per complete order
 function addOrder()
 {		
     $conn = connectDatabase();	   
     $checked_mail = mysqli_real_escape_string($conn, $_SESSION['email']);   
+    $checked_name = mysqli_real_escape_string($conn, $_SESSION['username']);
 
     foreach($_SESSION['shoppingcart'] as $fruit => $values)
     {
-        $sql = 'INSERT INTO orders(product, quantity, user)          
-        VALUES("'.$fruit.'", "'.$values['quantity'].'" , "'.$checked_mail.'")';
-        checkQuery($conn, $sql, 'Error entering order please try again');    
+        if ($values['quantity'] > 0)
+        {
+            $names .= $fruit . $values['quantity'];
+        }
     }
+
+    $sql = 'INSERT INTO orders(product, customer_name, user)          
+    VALUES("'.$names.'", "'.$checked_name.'" , "'.$checked_mail.'")';
+    checkQuery($conn, $sql, 'Error entering order please try again');    
+    
     
     mysqli_close($conn);
 }	

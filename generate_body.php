@@ -2,15 +2,8 @@
 
 function generateBody($post_result, $page) 
 {
-    if ($_SERVER['REQUEST_METHOD'] == 'GET') 
-    { 	
-        generateForm($page, $post_result);
-    }		
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') 
-    {	
-        checkPostRequest($post_result, $page);		
-    }	
-}
+    ($_SERVER['REQUEST_METHOD'] == 'POST') ? checkPostRequest($post_result, $page) : generateForm($page, $post_result);
+}	
 
 function checkPostRequest($post_result, $page)
 {

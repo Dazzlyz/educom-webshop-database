@@ -77,6 +77,7 @@ function validateRequest() : array
                 break;
                 case 'detail' :
                     $response['page'] =  getUrlVar('product','home');
+                    $_SESSION['id'] = getUrlVar('id', 1);
                     break;
                 case 'afrekenen' :                    
                     addOrder();
@@ -130,7 +131,7 @@ function generateContent($page, $post_result=array())
     {        
         if (in_array($page , getAvailableProducts()))
         {           
-            showDetail($page);      
+            showDetail($_SESSION['id']);      
         }
         else 
         {
@@ -147,8 +148,7 @@ function generateContent($page, $post_result=array())
                 break;	
                 case 'shoppingcart' :
                     showCart();
-                break;
-              
+                break;              
                 default:
                     generateBody($post_result, $page);
                 break;		

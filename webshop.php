@@ -1,5 +1,4 @@
 <?php
-// 02-C: Opdracht 3.2 optineel nog toevoegen? (op shoppingcart pagina increment optie bieden)
 
 function showWebshop()
 {       
@@ -9,7 +8,7 @@ function showWebshop()
     {
         echo '
         <br>id:'.$product['id'].' Product:'.$product['name'].'
-        <a href="index.php?page=detail&product='.$product['name'].'">
+        <a href="index.php?page=detail&product='.$product['name'].'&id='.$product['id'].'">
         <img src="images/'.$product['filename'].'" width="50" height="50"> </a>       
         Price: '.$product['price'].' Euro';         
         checkAddToCart($product);       
@@ -18,8 +17,7 @@ function showWebshop()
 
 function showDetail($page)
 {      
-    $placeholder = getProductDetails($page);
-    $product = getProductFromId($placeholder['id']);
+    $product = getProductFromId($page);
     if (empty($product))
     {
         echo '0 results';
@@ -55,37 +53,36 @@ function addToCart($product)
 }
 
 function showCart()
-{    
-    if (!empty($_SESSION['shoppingcart']))    
-    {   
-        $total = 0;
-        foreach ($_SESSION['shoppingcart'] as $fruit => $values)
-        {            
-            if ($values['quantity'] > 0)
-            {
-                $product_price = $values['price'] * $values['quantity'];
-                echo $fruit . ' selected: ' . $values['quantity'] . ' Price: '.  $product_price .' 
-                <form method="post" action="index.php">
-                <input type="hidden" name="page" value="'.$fruit.'" />         
-                <input type="submit" name="increase" value="+" /> </form> 
-                <form method="post" action="index.php">
-                <input type="hidden" name="page" value="'.$fruit.'" />         
-                <input type="submit" name="decrease" value="-" /> </form> <br>';
-                
-                
-                
-                // enter button of increase / decrease optie voor deze line break
-                $total +=  $product_price;
-            }
-        }
+{  
+    $total = 0;
+    foreach ($_SESSION['shoppingcart'] as $fruit => $values)
+    {            
+        if ($values['quantity'] > 0)
+        {
+            $product_price = $values['price'] * $values['quantity'];
+            echo $fruit . ' selected: ' . $values['quantity'] . ' Price: '.  $product_price .' 
+            <form method="post" action="index.php">
+            <input type="hidden" name="page" value="'.$fruit.'" />         
+            <input type="submit" name="increase" value="+" /> </form> 
+            <form method="post" action="index.php">
+            <input type="hidden" name="page" value="'.$fruit.'" />         
+            <input type="submit" name="decrease" value="-" /> </form> <br>';             
+            $total +=  $product_price;
+        }             
+    }
+    if  ($total == 0) 
+    {
+        echo 'Shopping Cart is empty, go to the <a href="index.php?page=webshop">webshop</a> to add some items!';
+    }  
+    else
+    {
         echo 'Total price: '.$total.' Euro
         <a href="index.php?page=afrekenen">
         <p>Afrekenen</p>
-        </a>';       
+        </a>';  
     }
-    else
-    {
-        echo 'Shopping Cart is empty, go to the <a href="index.php?page=webshop">webshop</a> to add some items!';
-    }    
+
+    
+    
 }
 ?>
