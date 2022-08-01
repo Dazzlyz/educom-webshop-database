@@ -1,5 +1,5 @@
 <?php 
-
+// tabel uit database met rebrieken structuur maken??
 define ('BASELINK', 'index.php');
 
 function getMenuItems(string $username = '') : array

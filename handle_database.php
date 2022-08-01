@@ -1,5 +1,6 @@
  <?php
 // Exceptions voor nieuwe database functies goed bewaken! 
+// Kijken naar hoe data naar elkaar relateerd, User ID's gebruiken in andere tabellen, e.g. order per user ID
 function connectDatabase()
 {
     $servername = "127.0.0.1";
@@ -125,7 +126,7 @@ function addOrder()
 
     $sql = 'INSERT INTO orders(product, customer_name, user)          
     VALUES("'.$names.'", "'.$checked_name.'" , "'.$checked_mail.'")';
-    checkQuery($conn, $sql, 'Error entering order please try again');    
+    checkQuery($conn, $sql, 'Error entering order please try again');   
     
     
     mysqli_close($conn);
