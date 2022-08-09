@@ -1,0 +1,9 @@
+maandag + < maandag: ERD maken, checken en eerste queries, +- 8 uur
+dinsdag: joins oefenen en eerste uitvoeren, 2 uur
+woensdag : sollicitatie, 0 uur
+donderdag: 4.30 uur
+vrijdag: 2 uur
+Maandag: 2 uur
+Dinsdag : 1.30 uur
+
+2/5 dag ++__
