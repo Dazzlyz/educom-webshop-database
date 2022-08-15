@@ -1,0 +1,229 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"></html>
+<html lang="en"></html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML/CSS Opdrachten</title>    
+    <link rel="stylesheet" href="opdracht.css">
+    <script src="./html_css.js"></script>
+</head>
+
+<body>
+    <form action="test.php" method="POST" enctype="multipart/form-data">
+        <div>       
+        <Button type="button">1. Base</button>
+        <Button type="button">2. User</button>
+        <Button type="button">3. File</button>
+        <Button type="button">4. Datatime</button>
+        <Button type="button">5. Numeric</button>
+        <Button type="button">6. MC</button>
+        <Button type="button">7. Optional Dialogs</button>
+        <Button type="button">8. Buttons</button>
+        </div>
+        <fieldset>
+            <legend>Base</legend>
+
+            <label for="lengte80">Lengte 80</label>
+            <input type="text" id="lengte80" name="lengte80" maxlength="80" placeholder="Text" required>
+
+            <label for="autocomplete">Autocomplete met Nederlandse provincies als mogelijke waardes</label>
+            <input type="text" id="autocomplete" name="autocomplete" list="tickmarks" required>
+            <datalist id="tickmarks">
+                <option value="Drenthe"></option>
+                <option value="Flevoland"></option>
+                <option value="Friesland"></option>
+                <option value="Gelderland"></option>
+                <option value="Groningen"></option>
+                <option value="Limburg"></option>
+                <option value="Noord-Brabant"></option>
+                <option value="Noord-Holland"></option>
+                <option value="Overijssel"></option>
+                <option value="Utrecht"></option>
+                <option value="Zeeland"></option>
+                <option value="Zuid-Holland"></option>
+            </datalist>
+
+            <label for="vastelengte">Vaste lengte 12, minimaal 1 spatie, verder enkel hoofdletters en -</label>
+            <input type="text" id="vastelengte" name="vastelengte" pattern="(?=.*\s?)[ A-Z\-]{12}" placeholder="A-B C-D E-FG" required>
+
+            <label for="nl-postcode">NL-postcode</label>
+            <input type="text" id="nl-postcode" name="nl-postcode" pattern="[1-9]{1}[0-9]{3}[A-Z]{2}" placeholder="1000AB" required>
+
+            <label for="formstatus">formstatus : new</label>
+            <input type="hidden" id="formstatus" name="formstatus" value="new">
+            
+            <label for="standaard">Standaard</label>
+            <textarea id="standaard" name="standaard" placeholder="Text" required></textarea>
+
+            <label for="rijkolom">met 5 rijen en 50 kolommen</label>
+            <textarea id="rijkolom" name="rijkolom" rows="5" cols="50" placeholder="Text" required></textarea>
+            <div id="count">            
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>User</legend>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Password" required>
+            <button id="password_toggle">
+                toggle show/hide
+            </button>
+            
+            <label for="telefoon">Telefoon</label>
+            <input type="tel" id="telefoon" placeholder="0612345678" required>
+
+            <label for="Email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Email" required>
+
+            <label for="url">URL</label>
+            <input type="url" id="url" name="url" placeholder="http://www.man-kind.nl/" required>
+        </fieldset>
+        <fieldset>
+            <legend>File</legend>
+
+            <label for="meerdere">meerdere files van het type pdf/doc/docx</label>
+            <input type="file" id="meerdere" name="meerdere" accept=".pdf,.doc,.docx" multiple>
+
+            <label for="enkele">1 file van het type jpeg/webp/png</label>
+            <input type="file" id="enkele" name="enkele" accept=".jpg,.jpeg,.webp,.png">
+        </fieldset>
+        <fieldset>
+            <legend>DateTime</legend>
+
+            <label for="date">Date</label>
+            <input type="date" id="date" name="date" required>
+
+            <label for="datetime-local">DateTime-Local</label>
+            <input type="datetime-local" id="datetime-local" name="datetime-local" required>
+
+            <label for="time">Time</label>
+            <input type="time" id="time" name="time" required>
+
+            <label for="week">Week</label>
+            <input type="week" id="week" name="week" required>
+
+            <label for="month">Month</label>
+            <input type="month" id="month" name="month" required>
+        </fieldset>
+        <fieldset>
+            <legend>Numeric</legend>
+
+            <label for="num-standaard">standaard, min 10 max 100</label>
+            <input type="number" id="num-standaard" name="num-standaard" value="10" min="10" max="100" required>
+
+            <label for="num-minmax">min 0 max 10, stap 0.25</label>
+            <input type="number" id="num-minmax" name="num-minmax" value="0" min="0" max="10" step="0.25" required>
+
+            <label for="range">1980 - Heden</label>
+            <input type="range" id="range" name="range" list="tickmarks" min="1980" max="2021" step="1" required>
+            <datalist id="tickmarks">
+                <option value="1980" label="1980"></option>
+                <option value="1990"></option>
+                <option value="2000"></option>
+                <option value="2010"></option>
+                <option value="2021" label="2021"></option>
+            </datalist>
+        </fieldset>
+        <fieldset>
+            <legend>MC</legend>
+
+            <label for="checkbox">Enkele checkbox</label>
+            <input type="checkbox" id="checkbox" name="checkbox" required>
+
+            <label>Groep met 3 checkboxes (contact by : mail, phone, pidgeon)</label>
+            <label for="emailbox">mail</label>
+            <input type="checkbox" id="emailbox" name="checkbox[]">
+            <label for="emailbox">phone</label>
+            <input type="checkbox" id="phonebox" name="checkbox[]">
+            <label for="pidgeonbox">pidgeon</label>
+            <input type="checkbox" id="pidgeonbox" name="checkbox[]">
+            
+            <label>Groep met 3 checkboxes (comment : Like, Dislike, Don't understand</label>
+            <label for="like-radio">Like</label>
+            <input type="radio" id="like-radio" name="like-radio">
+            <label for="dislike-radio">Dislike</label>
+            <input type="radio" id="dislike-radio" name="dislike-radio">
+            <label for="don't-radio">Don't understand</label>
+            <input type="radio" id="don't-radio" name="don't-radio">
+
+            <label for="3prov-select">1 keuze uit Nederlandse provincies 3 zichtbaar</label>
+            <select id="3prov-select" name="3prov-select" size="3" required>
+                <option value="Drenthe">Drenthe</option>
+                <option value="Flevoland">Flevoland</option>
+                <option value="Friesland">Friesland</option>
+                <option value="Gelderland">Gelderland</option>
+                <option value="Groningen">Groningen</option>
+                <option value="Limburg">Limburg</option>
+                <option value="Noord-Brabant">Noord-Brabant</option>
+                <option value="Noord-Holland">Noord-Holland</option>
+                <option value="Overijssel">Overijssel</option>
+                <option value="Utrecht">Utrecht</option>
+                <option value="Zeeland">Zeeland</option>
+                <option value="Zuid-Holland">Zuid-Holland</option>
+            </select>
+
+            <label for="3prov-rivier-select">1 keuze uit Nederlandse provincies gegroepeerd op "Boven en onder de rivieren"</label>
+            <select id="3prov-rivier-select" name="3prov-rivier-select" required>
+                <optgroup label="Boven de rivieren">
+                    <option value="Drenthe">Drenthe</option>
+                    <option value="Flevoland">Flevoland</option>
+                    <option value="Friesland">Friesland</option>
+                    <option value="Gelderland">Gelderland</option>
+                    <option value="Groningen">Groningen</option>
+                    <option value="Noord-Holland">Noord-Holland</option>
+                    <option value="Overijssel">Overijssel</option>
+                    <option value="Utrecht">Utrecht</option>
+                    <option value="Zuid-Holland">Zuid-Holland</option>
+                </optgroup>
+                <optgroup label="Onder de rivieren">
+                    <option value="Limburg">Limburg</option>
+                    <option value="Noord-Brabant">Noord-Brabant</option>
+                    <option value="Zeeland">Zeeland</option>
+                </optgroup>
+            </select>
+
+            <label for="3prov-mult-rivier-select">1 keuze uit Nederlandse provincies gegroepeerd op "Boven en onder de rivieren"</label>
+            <select id="3prov-mult-rivier-select" name="3prov-mult-rivier-select" multiple required>
+                <optgroup label="Boven de rivieren">
+                    <option value="Drenthe">Drenthe</option>
+                    <option value="Flevoland">Flevoland</option>
+                    <option value="Friesland">Friesland</option>
+                    <option value="Gelderland">Gelderland</option>
+                    <option value="Groningen">Groningen</option>
+                    <option value="Noord-Holland">Noord-Holland</option>
+                    <option value="Overijssel">Overijssel</option>
+                    <option value="Utrecht">Utrecht</option>
+                    <option value="Zuid-Holland">Zuid-Holland</option>
+                </optgroup>
+                <optgroup label="Onder de rivieren">
+                    <option value="Limburg">Limburg</option>
+                    <option value="Noord-Brabant">Noord-Brabant</option>
+                    <option value="Zeeland">Zeeland</option>
+                </optgroup>
+            </select>
+        </fieldset>
+        <fieldset>
+            <legend>Optional Dialogs</legend>
+            
+            <label for="colorpicker">Color Picker</label>
+            <input type="color" id="colorpicker" name="colorpicker" required>
+        </fieldset>
+        <fieldset>
+            <legend>Buttons</legend>
+            
+            <label for="reset">Reset</label>
+            <input type="reset" id="reset" name="reset">
+            
+            <label for="submit">Submit Here</label>
+            <input type="submit" id="submit" name="submit" formtarget="_self">
+
+            <label for="tab-submit">Submit To New Tab</label>
+            <input type="submit" id="tab-submit" name="tab-submit" formtarget="_blank">
+        </fieldset>
+    </form>
+</body>
+
+</html> 

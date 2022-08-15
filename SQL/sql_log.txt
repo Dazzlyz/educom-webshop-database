@@ -5,5 +5,7 @@ donderdag: 4.30 uur
 vrijdag: 2 uur
 Maandag: 2 uur
 Dinsdag : 1.30 uur
-
-2/5 dag ++__
+Woensdag : 3 uur
+Donderdag: 3.30 uur
+Vrijdag: 2 uur
+3.5 dag ++__

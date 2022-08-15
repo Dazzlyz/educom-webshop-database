@@ -1,0 +1,9 @@
+- ervoort zorgt dat bij verlaten van een veld de veldnaam en de huidige waarde wordt getoond op de console, w3
+- een button toevoegt aan het passwordfield die bij click de ingevoerde text leesbaar/onleesbaar maakt, w3
+- een textveld onder de textarea zet waarin het aantal ingetikte lettertekens word getoond, kan in anonieme functie geplakt worden.'
+
+
+- een horizontale serie tabs toevoegt aan je document boven de eerste fieldset, per fieldset een tab.
+- voeg functionaliteit toe om door de fieldsets te bladeren mbv muis-klik op tab.
+- initieel is tab base actief en fieldset base zichtbaar.
+- voeg aan je css de benodigde styling toe
