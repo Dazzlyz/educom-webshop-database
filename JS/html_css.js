@@ -12,6 +12,7 @@ function documentReady()
     updateNumberCount();
     logValue();
     togglePassword();
+    toggleFieldsets(); 
 }	
 
 // alles pakt het eerst veld in bestand
@@ -40,6 +41,107 @@ function togglePassword() // ???!?!?!?
         input.type = 'password'
     }
     }
+}
+
+function toggleFieldsets()
+{
+    document.getElementById("b1").addEventListener('click', () => 
+    {
+        document.getElementById("fs_file").hidden = false;
+        document.getElementById("fs_user").hidden = true;
+        document.getElementById("fs_base").hidden = true;
+        document.getElementById("fs_datatime").hidden = true;
+        document.getElementById("fs_numeric").hidden = true;
+        document.getElementById("fs_mc").hidden = true;
+        document.getElementById("fs_optional").hidden = true;
+        document.getElementById("fs_buttons").hidden = true;
+    }, 
+    false)
+    document.getElementById("b2").addEventListener('click', () => 
+    {
+        document.getElementById("fs_file").hidden = true;
+        document.getElementById("fs_user").hidden = false;
+        document.getElementById("fs_base").hidden = true;
+        document.getElementById("fs_datatime").hidden = true;
+        document.getElementById("fs_numeric").hidden = true;
+        document.getElementById("fs_mc").hidden = true;
+        document.getElementById("fs_optional").hidden = true;
+        document.getElementById("fs_buttons").hidden = true;
+    }, 
+    false)
+    document.getElementById("b3").addEventListener('click', () => 
+    {
+        document.getElementById("fs_file").hidden = true;
+        document.getElementById("fs_user").hidden = true;
+        document.getElementById("fs_base").hidden = false;
+        document.getElementById("fs_datatime").hidden = true;
+        document.getElementById("fs_numeric").hidden = true;
+        document.getElementById("fs_mc").hidden = true;
+        document.getElementById("fs_optional").hidden = true;
+        document.getElementById("fs_buttons").hidden = true;
+    }, 
+    false)
+    document.getElementById("b4").addEventListener('click', () => 
+    {
+        document.getElementById("fs_file").hidden = true;
+        document.getElementById("fs_user").hidden = true;
+        document.getElementById("fs_base").hidden = true;
+        document.getElementById("fs_datatime").hidden = false;
+        document.getElementById("fs_numeric").hidden = true;
+        document.getElementById("fs_mc").hidden = true;
+        document.getElementById("fs_optional").hidden = true;
+        document.getElementById("fs_buttons").hidden = true;
+    }, 
+    false)
+    document.getElementById("b5").addEventListener('click', () => 
+    {
+        document.getElementById("fs_file").hidden = true;
+        document.getElementById("fs_user").hidden = true;
+        document.getElementById("fs_base").hidden = true;
+        document.getElementById("fs_datatime").hidden = true;
+        document.getElementById("fs_numeric").hidden = false;
+        document.getElementById("fs_mc").hidden = true;
+        document.getElementById("fs_optional").hidden = true;
+        document.getElementById("fs_buttons").hidden = true;
+    }, 
+    false)
+    document.getElementById("b6").addEventListener('click', () => 
+    {
+        document.getElementById("fs_file").hidden = true;
+        document.getElementById("fs_user").hidden = true;
+        document.getElementById("fs_base").hidden = true;
+        document.getElementById("fs_datatime").hidden = true;
+        document.getElementById("fs_numeric").hidden = true;
+        document.getElementById("fs_mc").hidden = false;
+        document.getElementById("fs_optional").hidden = true;
+        document.getElementById("fs_buttons").hidden = true;
+
+    }, 
+    false)
+    document.getElementById("b7").addEventListener('click', () => 
+    {
+        document.getElementById("fs_file").hidden = true;
+        document.getElementById("fs_user").hidden = true;
+        document.getElementById("fs_base").hidden = true;
+        document.getElementById("fs_datatime").hidden = true;
+        document.getElementById("fs_numeric").hidden = true;
+        document.getElementById("fs_mc").hidden = true;
+        document.getElementById("fs_optional").hidden = false;
+        document.getElementById("fs_buttons").hidden = true;
+    }, 
+    false)
+    document.getElementById("b8").addEventListener('click', () => 
+    {
+        document.getElementById("fs_file").hidden = true;
+        document.getElementById("fs_user").hidden = true;
+        document.getElementById("fs_base").hidden = true;
+        document.getElementById("fs_datatime").hidden = true;
+        document.getElementById("fs_numeric").hidden = true;
+        document.getElementById("fs_mc").hidden = true;
+        document.getElementById("fs_optional").hidden = true;
+        document.getElementById("fs_buttons").hidden = false;
+    }, 
+    false)
 }
 
 function updateNumberCount()

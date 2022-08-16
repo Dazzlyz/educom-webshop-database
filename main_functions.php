@@ -139,21 +139,15 @@ function generateContent($page, $post_result=array())
             switch ($page)
             {
                 case 'home' :
-<<<<<<< HEAD
-                    $body = new TextBody();
-                    $body->homeText();				
+                    // $text = new TextBox();
+                    // $text->homeText();
+                    homeText();                  		
                 break;
                 case 'about' :                                   
-                    $body = new TextBody();
-                    $body->aboutText();		
-=======
-                    $text = new TextBox();
-                    $text->homeText();			
-                break;
-                case 'about' :                                   
-                    $text = new TextBox();
-                    $text->aboutText();		
->>>>>>> bf5e05bafa1a847b7b2661c7b4597370bbba6684
+                    // $text = new TextBox();
+                    // $text->aboutText();		
+                    aboutText(); 
+                    
                 break;                   
                 case 'webshop':                   
                     showWebshop();            

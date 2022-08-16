@@ -14,16 +14,16 @@
 <body>
     <form action="test.php" method="POST" enctype="multipart/form-data">
         <div>       
-        <Button type="button">1. Base</button>
-        <Button type="button">2. User</button>
-        <Button type="button">3. File</button>
-        <Button type="button">4. Datatime</button>
-        <Button type="button">5. Numeric</button>
-        <Button type="button">6. MC</button>
-        <Button type="button">7. Optional Dialogs</button>
-        <Button type="button">8. Buttons</button>
+        <Button type="button" id="b1">1. Base</button>
+        <Button type="button" id="b2">2. User</button>
+        <Button type="button" id="b3">3. File</button>
+        <Button type="button" id="b4">4. Datatime</button>
+        <Button type="button" id="b5">5. Numeric</button>
+        <Button type="button" id="b6">6. MC</button>
+        <Button type="button" id="b7">7. Optional Dialogs</button>
+        <Button type="button" id="b8">8. Buttons</button>
         </div>
-        <fieldset>
+        <fieldset id="fs_base">
             <legend>Base</legend>
 
             <label for="lengte80">Lengte 80</label>
@@ -63,7 +63,7 @@
             <div id="count">            
             </div>
         </fieldset>
-        <fieldset>
+        <fieldset id="fs_user" hidden>
             <legend>User</legend>
 
             <label for="password">Password</label>
@@ -81,7 +81,7 @@
             <label for="url">URL</label>
             <input type="url" id="url" name="url" placeholder="http://www.man-kind.nl/" required>
         </fieldset>
-        <fieldset>
+        <fieldset id="fs_file" hidden>
             <legend>File</legend>
 
             <label for="meerdere">meerdere files van het type pdf/doc/docx</label>
@@ -90,7 +90,7 @@
             <label for="enkele">1 file van het type jpeg/webp/png</label>
             <input type="file" id="enkele" name="enkele" accept=".jpg,.jpeg,.webp,.png">
         </fieldset>
-        <fieldset>
+        <fieldset id="fs_datetime" hidden>
             <legend>DateTime</legend>
 
             <label for="date">Date</label>
@@ -108,7 +108,7 @@
             <label for="month">Month</label>
             <input type="month" id="month" name="month" required>
         </fieldset>
-        <fieldset>
+        <fieldset id='fs_numeric' hidden>
             <legend>Numeric</legend>
 
             <label for="num-standaard">standaard, min 10 max 100</label>
@@ -127,7 +127,7 @@
                 <option value="2021" label="2021"></option>
             </datalist>
         </fieldset>
-        <fieldset>
+        <fieldset id="fs_mc" hidden>
             <legend>MC</legend>
 
             <label for="checkbox">Enkele checkbox</label>
@@ -205,13 +205,13 @@
                 </optgroup>
             </select>
         </fieldset>
-        <fieldset>
+        <fieldset id="fs_optional" hidden>
             <legend>Optional Dialogs</legend>
             
             <label for="colorpicker">Color Picker</label>
             <input type="color" id="colorpicker" name="colorpicker" required>
         </fieldset>
-        <fieldset>
+        <fieldset id="fs_buttons" hidden>
             <legend>Buttons</legend>
             
             <label for="reset">Reset</label>
