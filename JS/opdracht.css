@@ -1,0 +1,67 @@
+body {
+    /* Set "my-sec-counter" to 0 */
+    counter-reset: my-sec-counter;
+}
+
+legend::before {
+    /* Increment "my-sec-counter" by 1 */
+    counter-increment: my-sec-counter;
+    content: counter(my-sec-counter) ". ";
+}
+
+form {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 50%;
+    max-height: 90%;
+    overflow-y: scroll;
+}
+
+label {
+    display: inline-block;
+}
+
+textarea {
+    resize: none;
+}
+
+input {
+    color: black;
+    max-width: 400px; 
+}
+
+text {
+    color: black;
+}
+
+input:required {
+    background-color: rgb(241, 200, 202);
+}
+
+input:invalid {
+    color: 15px rgb(255, 0, 0);
+}
+
+input:focus {
+    color: rgb(42, 138, 145);
+}
+
+text { 
+    color: black;
+}
+
+*[placeholder] {
+    color: grey;
+}
+
+@media only screen and (max-width: 1024px) {
+    label {
+        display: block;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    label {
+        display: none;
+    }
+}

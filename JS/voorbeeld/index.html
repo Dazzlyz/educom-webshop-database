@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html  lang="en">
+
+  <head>
+      <title>Framework Test</title>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="author" content="M@nKind - Geert Weggemans" />
+      <link rel="author" href="https://man-kind.nl" />
+<link rel="stylesheet" href="./_res/css/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- Site CSS -->
+      <link href="./_res/css/site.css" rel="stylesheet" crossorigin="anonymous">
+  </head>
+  <body>
+<div>
+<!-- Header begin -->
+  <header>
+      <div class="container">
+      </div>
+  </header>
+<!-- Header end -->
+<div id="usermsg" class="w3-panel w3-red" style="none">
+	  <button id="formalize">Alter Form</button>
+<span onclick="hideById('usermsg')" class="w3-button w3-display-topright">&times;</span>
+<p class="msg"></p>
+</div>
+<div class="w3-col s12 m9 l6"><form id="4711" class="w3-container gw-form" action="" method="POST" novalidate >
+  <input type="hidden" name="form_id" value="4711" />
+    <fieldset id="4711-0">
+        <legend>inputs</legend>
+<label for="name">Your name</label>
+<input  id="id_name" name="name" class=" w3-input w3-border" required="required"  type="text" value="" placeholder="Enter your name" size="50" />
+<br/><label for="email">Your email</label>
+<input  id="id_email" name="email" class=" w3-input w3-border" required="required"  type="email" value="" placeholder="Enter your email address" size="50" />
+<br/><label for="password">Your password<span data-gw-toggle-target="id_password" title="show/hide characters"  class="gw-toggle-password">&#x1F441;</span></label>
+<input  id="id_password" name="password" class=" w3-input w3-border" required="required"  type="password" value="" placeholder="Enter your password" size="50" pattern="^((?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9]).{7,})\S$" title="8 characters or more, at least 1 uppercase, 1 lowercase, 1 number, 1 special char, no whitespaces." />
+<br/><label for="phone">Your phone-number</label>
+<input  id="id_phone" name="phone" class=" w3-input w3-border" required="required"  type="tel" value="" placeholder="Enter your phone-number" size="15" />
+<br/><label for="prefix">Your personal prefix</label>
+<input  id="id_prefix" name="prefix" class=" w3-input w3-border" required="required"  type="text" value="" size="10" pattern="[A-Z_]{3,10}" title="3 to 10 letters, allowed A to Z and _" />
+<br/>   </fieldset>    <fieldset id="4711-1">
+        <legend>mc</legend>
+<label for="sure">Are you sure?</label>
+<div class="formfield radiogroup">
+<input class=" w3-radio" type="radio" name="sure" value="Y" checked="checked" /><label>&nbsp;Ja</label><br/>
+<input class=" w3-radio" type="radio" name="sure" value="N" /><label>&nbsp;Nee</label><br/>
+</div>
+<br/><label for="contact">Please contact me by</label>
+<select id="id_contact" name="contact" class=" w3-select" required="required" >
+<option value="contact_email">By email</option>
+<option value="contact_phone">By phone</option>
+<option value="contact_pidgeon">By bird</option>
+</select>
+<br/><label for="table">Database table</label>
+<select id="id_table" name="table" class=" w3-select" required="required" >
+<option value="COMPANIES">BASE TABLE:companies</option>
+<option value="CONTENT_BLOCKS">BASE TABLE:content_blocks</option>
+<option value="COUNTRIES">BASE TABLE:countries</option>
+<option value="CURSUSMENU">BASE TABLE:cursusmenu</option>
+<option value="DEVICEMETRICS">BASE TABLE:devicemetrics</option>
+<option value="DOWNLOADS">BASE TABLE:downloads</option>
+<option value="FIELDINFO">BASE TABLE:fieldinfo</option>
+<option value="FIELDTYPES">BASE TABLE:fieldtypes</option>
+<option value="FORMPANELS">BASE TABLE:formpanels</option>
+<option value="LINK">BASE TABLE:link</option>
+<option value="LINKGROUP">BASE TABLE:linkgroup</option>
+<option value="LOOKUPVALUES">BASE TABLE:lookupvalues</option>
+<option value="MENU">BASE TABLE:menu</option>
+<option value="MIMETYPE">BASE TABLE:mimetype</option>
+<option value="NEWS">BASE TABLE:news</option>
+<option value="PAGE_CONTENT">BASE TABLE:page_content</option>
+<option value="PAGES">BASE TABLE:pages</option>
+<option value="PROJECT_PICS">BASE TABLE:project_pics</option>
+<option value="PROJECTS">BASE TABLE:projects</option>
+<option value="PROJECTS_TECHNIEKEN">BASE TABLE:projects_technieken</option>
+<option value="REGEXDEF">BASE TABLE:regexdef</option>
+<option value="ROLES">BASE TABLE:roles</option>
+<option value="SETTINGS">BASE TABLE:settings</option>
+<option value="TABLEACTIONS">BASE TABLE:tableactions</option>
+<option value="TABLEINFO">BASE TABLE:tableinfo</option>
+<option value="TECHNIEKEN">BASE TABLE:technieken</option>
+<option value="URLTYPE">BASE TABLE:urltype</option>
+<option value="USER_SETTINGS">BASE TABLE:user_settings</option>
+<option value="USERS">BASE TABLE:users</option>
+<option value="WEBSITE">BASE TABLE:website</option>
+<option value="WEBSITE_URL">BASE TABLE:website_url</option>
+</select>
+<br/><label for="view">Database view</label>
+<select id="id_view" name="view" class=" w3-select" required="required" >
+<option value="CONTENT_BLOCK_VIEW">VIEW:content_block_view</option>
+<option value="MENU_VIEW">VIEW:menu_view</option>
+</select>
+<br/><label for="tableorview">Database table or view</label>
+<select id="id_tableorview" name="tableorview" class=" w3-select" required="required" >
+<option value="COMPANIES">BASE TABLE:companies</option>
+<option value="CONTENT_BLOCK_VIEW">VIEW:content_block_view</option>
+<option value="CONTENT_BLOCKS">BASE TABLE:content_blocks</option>
+<option value="COUNTRIES">BASE TABLE:countries</option>
+<option value="CURSUSMENU">BASE TABLE:cursusmenu</option>
+<option value="DEVICEMETRICS">BASE TABLE:devicemetrics</option>
+<option value="DOWNLOADS">BASE TABLE:downloads</option>
+<option value="FIELDINFO">BASE TABLE:fieldinfo</option>
+<option value="FIELDTYPES">BASE TABLE:fieldtypes</option>
+<option value="FORMPANELS">BASE TABLE:formpanels</option>
+<option value="LINK">BASE TABLE:link</option>
+<option value="LINKGROUP">BASE TABLE:linkgroup</option>
+<option value="LOOKUPVALUES">BASE TABLE:lookupvalues</option>
+<option value="MENU">BASE TABLE:menu</option>
+<option value="MENU_VIEW">VIEW:menu_view</option>
+<option value="MIMETYPE">BASE TABLE:mimetype</option>
+<option value="NEWS">BASE TABLE:news</option>
+<option value="PAGE_CONTENT">BASE TABLE:page_content</option>
+<option value="PAGES">BASE TABLE:pages</option>
+<option value="PROJECT_PICS">BASE TABLE:project_pics</option>
+<option value="PROJECTS">BASE TABLE:projects</option>
+<option value="PROJECTS_TECHNIEKEN">BASE TABLE:projects_technieken</option>
+<option value="REGEXDEF">BASE TABLE:regexdef</option>
+<option value="ROLES">BASE TABLE:roles</option>
+<option value="SETTINGS">BASE TABLE:settings</option>
+<option value="TABLEACTIONS">BASE TABLE:tableactions</option>
+<option value="TABLEINFO">BASE TABLE:tableinfo</option>
+<option value="TECHNIEKEN">BASE TABLE:technieken</option>
+<option value="URLTYPE">BASE TABLE:urltype</option>
+<option value="USER_SETTINGS">BASE TABLE:user_settings</option>
+<option value="USERS">BASE TABLE:users</option>
+<option value="WEBSITE">BASE TABLE:website</option>
+<option value="WEBSITE_URL">BASE TABLE:website_url</option>
+</select>
+<br/><label for="column">Table column</label>
+<select id="id_column" name="column" class="gw-db-column-field w3-select" required="required"  data-gw-observe-value-from="id_table">
+<option value="ID">id&nbsp;(int)</option>
+<option value="NAME">name&nbsp;(varchar(25))</option>
+<option value="PASS">pass&nbsp;(varchar(50))</option>
+<option value="FULLNAME">fullname&nbsp;(varchar(100))</option>
+<option value="ROLEID">roleid&nbsp;(int)</option>
+<option value="ACTIVE_SINCE">active_since&nbsp;(date)</option>
+<option value="ACTIVE_UNTIL">active_until&nbsp;(date)</option>
+</select>
+<br/><label for="user">Your username</label>
+<select id="id_user" name="user" class=" w3-select" required="required" >
+<option value="31">Adil EJ</option>
+<option value="37">Akif Abasov</option>
+<option value="22">Boris de Beer</option>
+<option value="21">Cary-Louise Roch</option>
+<option value="41">Danny van den Houte</option>
+<option value="29">Dennie Wong</option>
+<option value="25">Dennis Dijkstra</option>
+<option value="26">Elise van der Leeuw</option>
+<option value="20">Fee Stevens</option>
+<option value="34">Hidde Van Abbema</option>
+<option value="44">Igor Skopic</option>
+<option value="16">Jan Becking</option>
+<option value="35">Jan willem</option>
+<option value="17">JensDijkstra</option>
+<option value="5">Jeroen Rutjes</option>
+<option value="30">Jimme van der Meer</option>
+<option value="11">Joffrey Mandersloot</option>
+<option value="27">José van der Bijl</option>
+<option value="40">Julian Hoogendoorn</option>
+<option value="18">Jurjen van Laun</option>
+<option value="6">Kaj Tannemaat</option>
+<option value="28">Kresna Hapsari</option>
+<option value="7">Lara Blokker</option>
+<option value="8">Lisa Stensen</option>
+<option value="49">Lonneke Griesel</option>
+<option value="9">Lucas Hogenboom</option>
+<option value="13">Lukas van Eck</option>
+<option value="45">Marjanne Goossens</option>
+<option value="47">Marjanne Goossens</option>
+<option value="38">Matthias Poortvliet</option>
+<option value="15">Maurits de Leeuw</option>
+<option value="3">Mehmet Ceylan</option>
+<option value="12">Mels Popp</option>
+<option value="24">Merel Kieft</option>
+<option value="39">Michel Smeets</option>
+<option value="14">Nilish Sitaram</option>
+<option value="23">Paul Schreur</option>
+<option value="19">Redouan Daghouch</option>
+<option value="32">Richard Nadji</option>
+<option value="10">Sander de Vree</option>
+<option value="36">Sanne Immens</option>
+<option value="43">Stan Eimers</option>
+<option value="33">Taco Droogers</option>
+<option value="50">Thijs Peterkamp</option>
+<option value="48">Thijs te Brake</option>
+<option value="42">Tymen Goluke</option>
+<option value="4">Vincent Hendriks</option>
+</select>
+<br/><label for="roles_bin">Your role(s) Binary</label>
+<div class="formfield checkboxgroup">
+<input class=" w3-checkbox" type="checkbox" name="roles_bin[]" value="3" /><label>&nbsp;CURSIST</label><br/>
+<input class=" w3-checkbox" type="checkbox" name="roles_bin[]" value="2" /><label>&nbsp;TRAINER - COACH</label><br/>
+<input class=" w3-checkbox" type="checkbox" name="roles_bin[]" value="1" /><label>&nbsp;SITE OWNER</label><br/>
+<input class=" w3-checkbox" type="checkbox" name="roles_bin[]" value="0" /><label>&nbsp;ADMINISTRATOR</label><br/>
+</div>
+<br/><label for="roles_arr">Your role(s) Array</label>
+<div class="formfield checkboxgroup">
+<input class=" w3-checkbox" type="checkbox" name="roles_arr[]" value="3" /><label>&nbsp;CURSIST</label><br/>
+<input class=" w3-checkbox" type="checkbox" name="roles_arr[]" value="2" /><label>&nbsp;TRAINER - COACH</label><br/>
+<input class=" w3-checkbox" type="checkbox" name="roles_arr[]" value="1" /><label>&nbsp;SITE OWNER</label><br/>
+<input class=" w3-checkbox" type="checkbox" name="roles_arr[]" value="0" /><label>&nbsp;ADMINISTRATOR</label><br/>
+</div>
+<br/>   </fieldset>    <fieldset id="4711-2">
+        <legend>extra</legend>
+<label for="age">Your age</label>
+<input  id="id_age" name="age" class=" w3-input w3-border" required="required"  type="number" value="18" min="18"  max="65"  step="1"  />
+<br/><label for="length">Your length</label>
+<input  id="id_length" name="length" class=" w3-input w3-border" required="required"  type="number" value="1.64" min="1.45"  max="2.1"  step="0.01"  />
+<br/><label for="message">Your message</label>
+<textarea  id="id_message" name="message" class=" w3-input w3-border" required="required"  rows="5" cols="80" maxlength="250" wrap="hard" placeholder="Enter your message"></textarea>
+<br/>   </fieldset>    <fieldset id="4711-3">
+        <legend>files</legend>
+<label for="avatar">Your avatar</label>
+<input  id="id_avatar" name="avatar" class="gw-image-upload w3-input w3-border" required="required"  type="file" accept="image/png,image/jpeg" data-gw-maxwidth="400" />
+<br/>   </fieldset>		<button type="submit" value="submit">verstuur</button>
+	</form>
+</div>
+<!-- MainContent begin -->
+  <h3>2022-05-18 08:48:41</h3>  <main>
+      <div id="main-content" class="w3-row-padding">
+      </div>
+  </main>
+<!-- MainContent end -->
+<!-- Footer begin -->
+  <footer class="container-fluid">
+      <div class="row">
+      </div>
+  </footer>
+<!-- Footer end -->
+<script>const URLBASE = "CMS";</script>
+<script src="./_res/js/gw_image_loader.js"></script>
+<script src="./_res/js/gw_form.js"></script>
+<script src="./_res/js/gw_bootstrap.js"></script>
+<script src="./_res/js/gw_ajax.js"></script>
+<script>
+(function (fn) 
+{
+    if (document.readyState === "complete" || document.readyState === "interactive") 
+    {
+        // call on next available tick
+        setTimeout(fn, 1);
+    } 
+    else
+    {
+        document.addEventListener("DOMContentLoaded", fn);
+    }
+}(documentReady));    
+</script>
+
+</div>
+  </body>
+</html>
