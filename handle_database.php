@@ -124,10 +124,12 @@ function addOrder()
         }
     }
 
-    $sql = 'INSERT INTO orders(product, customer_name, user)          
+    $sql = 'INSERT INTO orders(product, quantity, user)          
     VALUES("'.$names.'", "'.$checked_name.'" , "'.$checked_mail.'")';
+
     checkQuery($conn, $sql, 'Error entering order please try again');   
     
+
     
     mysqli_close($conn);
 }	

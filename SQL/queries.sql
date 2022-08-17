@@ -33,42 +33,46 @@ WHERE mhl_propertytypes.name = 'specialistische leverancier' OR mhl_propertytype
 4.5 : SELECT mhl_suppliers.name, straat, postcode, huisnr, pc_lat_long.lat, pc_lat_long.lng FROM mhl_suppliers 
 JOIN pc_lat_long ON mhl_suppliers.postcode=pc_lat_long.pc6 
 ORDER BY pc_lat_long.lat DESC LIMIT 5
-4.6 : SELECT mhl_hitcount.hitcount, mhl_suppliers.name, mhl_cities.name, mhl_communes.name, mhl_districts.name FROM mhl_suppliers
+4.6 : SELECT mhl_hitcount.hitcount, mhl_suppliers.name, mhl_cities.name, 
+mhl_communes.name, mhl_districts.name FROM mhl_suppliers
 JOIN mhl_hitcount ON mhl_suppliers.id=mhl_hitcount.supplier_ID
 JOIN mhl_cities ON  mhl_suppliers.city_ID=mhl_cities.id
 JOIN mhl_communes ON mhl_cities.commune_ID=mhl_communes.id
 JOIN mhl_districts ON mhl_communes.district_ID=mhl_districts.id
 WHERE mhl_hitcount.year = '2014' AND mhl_hitcount.month = 01 
-AND (mhl_districts.name = 'zeeland' OR mhl_districts.name = 'noord-brabant' OR mhl_districts.name = 'limburg')
+AND (mhl_districts.name = 'zeeland' OR mhl_districts.name = 'noord-brabant' 
+OR mhl_districts.name = 'limburg')
 4.7: SELECT name, id, commune_id FROM mhl_cities
 GROUP BY name
 HAVING COUNT(*) > 1
 ORDER BY mhl_cities.name
-4.8 : SELECT mhl_cities.name, mhl_cities.id, mhl_cities.commune_id, mhl_communes.name FROM mhl_cities
+4.8 : SELECT mhl_cities.name, mhl_cities.id, mhl_cities.commune_id, 
+mhl_communes.name FROM mhl_cities
 JOIN mhl_communes ON mhl_cities.commune_ID=mhl_communes.id
 WHERE commune_ID != 0
 GROUP BY mhl_cities.name
 HAVING COUNT(*) > 1
 ORDER BY mhl_cities.name
 5.1 : SELECT name, commune_ID FROM mhl_cities WHERE commune_ID = 0
-5.2 : SELECT mhl_cities.name, IFNULL(mhl_communes.name, 'INVALID') AS 'Commune name' 
+5.2 : SELECT mhl_cities.name, IFNULL(mhl_communes.name, 'INVALID') 
+AS 'Commune name' 
 FROM mhl_cities
-LEFT JOIN mhl_communes ON mhl_communes.id = mhl_cities.commune_ID
-5.3 : 
-
-SELECT e.id, e.name AS 'hoofdrubriek', if(m.name='', e.name, m.name)  AS 'subbriek'
+JOIN mhl_communes ON mhl_communes.id = mhl_cities.commune_ID
+5.3 : SELECT m.id, 
+IFNULL(e.name, m.name) AS 'hoofdrubriek', 
+IF(ISNULL(e.name), '', m.name) AS 'subrubriek'
 FROM mhl_rubrieken e
 INNER JOIN mhl_rubrieken m ON e.id = m.parent;
 
 // losse rubrieken met NULL nog? 
 
 
-5.4: SELECT DISTINCT mhl_suppliers.name, mhl_propertytypes.name, IFNULL(mhl_yn_properties.content, "NOT SET") as 'value'
+5.4: SELECT DISTINCT mhl_suppliers.name, IFNULL(mhl_propertytypes.name, 'NOT SET') 
 FROM mhl_propertytypes 
 JOIN mhl_yn_properties ON mhl_yn_properties.propertytype_ID = mhl_propertytypes.id 
 JOIN mhl_suppliers ON mhl_yn_properties.supplier_ID = mhl_suppliers.id 
 JOIN mhl_cities ON mhl_suppliers.city_ID = mhl_cities.id 
-WHERE mhl_cities.name = 'amsterdam' AND mhl_propertytypes.proptype="A"
+WHERE mhl_cities.name = 'amsterdam';
 
 // lege velden als 'NOT SET' weergeven.
 
@@ -81,20 +85,15 @@ GROUP BY year
 6.3: SELECT DISTINCT year , MAX(hitcount) AS 'max', MIN(hitcount) AS 'min', COUNT(hitcount) AS 'total', SUM(hitcount) AS 'total hits', AVG(hitcount) AS 'avg' 
 FROM mhl_hitcount
 GROUP BY year, month
-
-6.4: 
-
-SELECT mhl_suppliers.name, SUM(mhl_hitcount.hitcount) AS 'numhits', COUNT(mhl_hitcount.month) AS 'NUMMONTHS', ROUND(AVG(mhl_hitcount.hitcount)) AS 'avg'
+6.4: SELECT mhl_suppliers.name, 
+SUM(IFNULL(mhl_hitcount.hitcount, -1)) AS 'numhits', 
+COUNT(mhl_hitcount.hitcount) AS 'NUMMONTHS', 
+ROUND(AVG(mhl_hitcount.hitcount)) AS 'avg'
 FROM mhl_hitcount
 JOIN mhl_suppliers ON mhl_suppliers.id = mhl_hitcount.supplier_id
-
-GROUP BY mhl_suppliers.name
+GROUP BY mhl_suppliers.ID
 ORDER BY avg DESC
-
-Conditie voor hitcount > 100 schrijven
-
-
-7.1 : SELECT DISTINCT mhl_suppliers.name AS 'leverancier', 
+7.1 ?: SELECT DISTINCT mhl_suppliers.name AS 'leverancier', 
 CASE
 	WHEN mhl_departments.name = 'directie' THEN mhl_contacts.name
     ELSE 't.a.v. de directie'
@@ -121,33 +120,46 @@ JOIN mhl_communes ON mhl_communes.id=mhl_cities.commune_ID
 JOIN mhl_departments ON mhl_contacts.department = mhl_departments.id
 JOIN mhl_districts ON mhl_districts.id = mhl_communes.district_ID  
 ORDER BY `leverancier` ASC
-7.2: 
-
-SELECT mhl_cities.name AS 'stad', 
-COUNT(mhl_suppliers.membertype) AS 'gold', 
-COUNT(mhl_suppliers.membertype) AS 'silver', 
-COUNT(mhl_suppliers.membertype) AS 'bronze', 
-COUNT(mhl_suppliers.membertype) AS 'other' 
+7.2: SELECT mhl_cities.name AS 'stad', 
+COUNT(IF(mhl_suppliers.membertype = 1, 1, NULL)) Gold,
+COUNT(IF(mhl_suppliers.membertype = 2, 1, NULL)) Silver,
+COUNT(IF(mhl_suppliers.membertype = 3, 1, NULL)) 'Bronze',
+COUNT(IF (mhl_suppliers.membertype NOT IN (1,2,3), 1, NULL)) 'Other'
 FROM mhl_suppliers
 JOIN mhl_cities ON mhl_suppliers.city_id = mhl_cities.id
 
-GROUP BY mhl_suppliers.membertype, mhl_cities.name
+GROUP BY mhl_cities.name
 ORDER BY gold DESC, silver DESC, bronze DESC, other DESC;
-
-// 1 membertype en juiste type per column
 
 7.3: 
 SELECT mhl_hitcount.year, 
-hitcount AS 'eerste kwartaal',
-hitcount AS 'tweede kwartaal',
-hitcount AS 'derde kwartaal',
-hitcount AS 'vierde kwartaal',
+SUM(CASE
+        WHEN month = '1' THEN hitcount
+        WHEN month = '2' THEN hitcount
+        WHEN month = '3' THEN hitcount
+        ELSE 0
+    END) AS 'Eerste kwartaal',
+SUM(CASE
+        WHEN month = '4' THEN hitcount
+        WHEN month = '5' THEN hitcount
+        WHEN month = '6' THEN hitcount
+        ELSE 0
+    END) AS 'Tweede kwartaal',
+SUM(CASE
+        WHEN month = '7' THEN hitcount
+        WHEN month = '8' THEN hitcount
+        WHEN month = '9' THEN hitcount
+        ELSE 0
+    END) AS 'Derde kwartaal',
+    SUM(CASE
+        WHEN month = '10' THEN hitcount
+        WHEN month = '11' THEN hitcount
+        WHEN month = '12' THEN hitcount
+        ELSE 0
+    END) AS 'Vierde kwartaal',
 SUM(hitcount) AS 'total'
 FROM mhl_hitcount 
 GROUP BY year
-
-// grouperen op kwartalen 
-
 8.1: CREATE VIEW directie AS
 SELECT mhl_contacts.supplier_ID, 
 mhl_contacts.name AS 'contact',
@@ -182,7 +194,7 @@ FROM verzendlijst
 JOIN directie ON verzendlijst.id = directie.supplier_ID
 JOIN mhl_suppliers ON verzendlijst.id = mhl_suppliers.id
 
-9.1 : SELECT year, 
+9.1 ? : SELECT year, 
 CASE 
 	WHEN month = 1 THEN 'januari'
     WHEN month = 2 THEN 'febrauri'
@@ -246,6 +258,15 @@ GROUP BY mhl_rubrieken.name;
 
 // zorgen dat deel van 9.3 werkt en dan kijken naar uitwerking 
 
+
+
+
+
+
+
+
+
+
 10.1: 
 
 SELECT mhl_suppliers.name, 
@@ -265,16 +286,22 @@ WHERE JOINDATE IS IN <7 DAGEN FROM END OF month
 CONCAT(UPPER(SUBSTRING(name, 1, 1)), SUBSTRING(name, 2, 100)) AS 'nice_name'
 FROM mhl_cities  
 ORDER BY `mhl_cities`.`name` ASC;
-11.2: 
-
-SELECT name,
-REPLACE(name)
+11.2: SELECT name,
+REPLACE (
+  REPLACE (
+   REPLACE (
+    REPLACE (
+     REPLACE (
+      REPLACE (
+       REPLACE(name, '&eacute;', 'é'),
+      '&ouml;', 'ö'),
+     '&Uuml;', 'Ü'),
+    '&euml;', 'ë'),
+   '&egrave;', 'è'),
+  '&iuml;','ï'),    
+ '&acirc;', 'â')  
+AS nicename
 FROM mhl_suppliers
 WHERE name REGEXP "&[^\s]*;"
 LIMIT 25
-
-// manier vinden om juiste decode te gebruiken? 
-
-
-
 

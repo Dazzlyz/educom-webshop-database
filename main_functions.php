@@ -1,5 +1,6 @@
 <?php
 
+// CHECK BESTANDEN OP NIEUWE EN OUDE SHOPPINGCART 
 require 'page_functions.php';
 require 'texts.php';
 require 'get_var_functions.php';
@@ -32,8 +33,8 @@ function validateRequest() : array
         {	   
             if (in_array($request['page'] , getAvailableProducts()))
             {
-                manageCart($_POST);		
-                header('Location: http://localhost/educom-webshop-database/index.php?page=shoppingcart');
+                manageCart($_POST);	                
+                // header('Location: http://localhost/educom-webshop-database/index.php?page=shoppingcart');                
             }	       
             else 
             {      
@@ -138,12 +139,15 @@ function generateContent($page, $post_result=array())
             switch ($page)
             {
                 case 'home' :
-                    $text = new TextBox();
-                    $text->homeText();			
+                    // $text = new TextBox();
+                    // $text->homeText();
+                    homeText();                  		
                 break;
                 case 'about' :                                   
-                    $text = new TextBox();
-                    $text->aboutText();		
+                    // $text = new TextBox();
+                    // $text->aboutText();		
+                    aboutText(); 
+                    
                 break;                   
                 case 'webshop':                   
                     showWebshop();            
