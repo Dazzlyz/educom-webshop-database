@@ -63,12 +63,12 @@ INNER JOIN mhl_rubrieken m ON e.id = m.parent;
 // losse rubrieken met NULL nog? 
 
 
-5.4: SELECT DISTINCT mhl_suppliers.name, IFNULL(mhl_propertytypes.name, 'NOT SET') 
+5.4: SELECT DISTINCT mhl_suppliers.name, mhl_propertytypes.name, IFNULL(mhl_yn_properties.content, "NOT SET") as 'value'
 FROM mhl_propertytypes 
 JOIN mhl_yn_properties ON mhl_yn_properties.propertytype_ID = mhl_propertytypes.id 
 JOIN mhl_suppliers ON mhl_yn_properties.supplier_ID = mhl_suppliers.id 
 JOIN mhl_cities ON mhl_suppliers.city_ID = mhl_cities.id 
-WHERE mhl_cities.name = 'amsterdam';
+WHERE mhl_cities.name = 'amsterdam' AND mhl_propertytypes.proptype="A"
 
 // lege velden als 'NOT SET' weergeven.
 
