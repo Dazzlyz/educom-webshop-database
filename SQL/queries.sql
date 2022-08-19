@@ -62,21 +62,17 @@ JOIN mhl_communes ON mhl_communes.id = mhl_cities.commune_ID
 IFNULL(e.name, m.name) AS 'hoofdrubriek', 
 IF(ISNULL(e.name), '', m.name) AS 'subrubriek'
 FROM mhl_rubrieken e
-INNER JOIN mhl_rubrieken m ON e.id = m.parent;
-
-// losse rubrieken met NULL nog? 
-
-
-5.4: SELECT DISTINCT mhl_suppliers.name, IFNULL(mhl_propertytypes.name, 'NOT SET') 
-FROM mhl_propertytypes 
-JOIN mhl_yn_properties ON mhl_yn_properties.propertytype_ID = mhl_propertytypes.id 
-JOIN mhl_suppliers ON mhl_yn_properties.supplier_ID = mhl_suppliers.id 
+RIGHT OUTER JOIN  mhl_rubrieken m ON m.parent = e.id
+ORDER BY hoofdrubriek, subrubriek
+5.4: SELECT mhl_suppliers.name, 
+mhl_propertytypes.name,
+IFNULL(mhl_yn_properties.content, 'NOT SET') 
+FROM mhl_suppliers
+CROSS JOIN mhl_propertytypes
+LEFT JOIN mhl_yn_properties ON mhl_yn_properties.supplier_ID = mhl_suppliers.id
+AND  mhl_propertytypes.id=mhl_yn_properties.propertytype_ID
 JOIN mhl_cities ON mhl_suppliers.city_ID = mhl_cities.id 
-WHERE mhl_cities.name = 'amsterdam';
-
-// lege velden als 'NOT SET' weergeven.
-
-
+WHERE mhl_cities.name = 'amsterdam' AND mhl_propertytypes.proptype="A"
 6.1 : SELECT MAX(hitcount) AS 'max', MIN(hitcount) AS 'min', COUNT(hitcount) AS 'total', SUM(hitcount) AS 'total hits', AVG(hitcount) AS 'avg'
 FROM mhl_hitcount
 6.2 : SELECT DISTINCT year , MAX(hitcount) AS 'max', MIN(hitcount) AS 'min', COUNT(hitcount) AS 'total', SUM(hitcount) AS 'total hits', AVG(hitcount) AS 'avg' 
@@ -130,9 +126,7 @@ JOIN mhl_cities ON mhl_suppliers.city_id = mhl_cities.id
 
 GROUP BY mhl_cities.name
 ORDER BY gold DESC, silver DESC, bronze DESC, other DESC;
-
-7.3: 
-SELECT mhl_hitcount.year, 
+7.3: SELECT mhl_hitcount.year, 
 SUM(CASE
         WHEN month = '1' THEN hitcount
         WHEN month = '2' THEN hitcount
@@ -193,7 +187,6 @@ stad
 FROM verzendlijst
 JOIN directie ON verzendlijst.id = directie.supplier_ID
 JOIN mhl_suppliers ON verzendlijst.id = mhl_suppliers.id
-
 9.1 ? : SELECT year, 
 CASE 
 	WHEN month = 1 THEN 'januari'
@@ -214,74 +207,82 @@ SUM(hitcount) AS 'total aantal hits'
 FROM mhl_hitcount
 GROUP BY year, month
 ORDER BY year DESC, month ASC
-9.2 : 
-
-SELECT mhl_communes.name,
-mhl_suppliers.name,
-SUM(mhl_hitcount.hitcount) AS 'total',
-AVG(mhl_hitcount.hitcount)
-FROM mhl_suppliers
-JOIN mhl_cities ON mhl_suppliers.city_ID = mhl_cities.id
-JOIN mhl_communes ON mhl_cities.commune_ID = mhl_communes.id
-JOIN mhl_hitcount ON mhl_suppliers.id = mhl_hitcount.supplier_ID
-JOIN mhl_districts ON mhl_communes.district_ID = mhl_districts.id
-JOIN mhl_countries ON mhl_districts.country_ID = mhl_countries.id
-
-WHERE mhl_countries.name = 'Nederland'
-GROUP BY mhl_suppliers.name
-ORDER BY mhl_communes.name, total DESC, mhl_suppliers.name
-
-// opdracht nog een keer goed wat er precies bedoeld word voor 4de column//
-// column maken die gemiddelde berekend van hitcount in de gemeente, verschil checkt met de hitcount van de supplier en dan positieve vergelijkingen terugeeft. 
-
-
-9.3: 
-
-SELECT mhl_rubrieken.name,
-COUNT(mhl_rubrieken.name)
-FROM mhl_rubrieken e
-JOIN mhl_suppliers_mhl_rubriek_view ON mhl_suppliers_mhl_rubriek_view.mhl_rubriek_view_ID = mhl_rubrieken.id
-JOIN mhl_suppliers ON mhl_suppliers.id = mhl_suppliers_mhl_rubriek_view.mhl_suppliers_ID
-INNER JOIN mhl_rubrieken m ON e.id = m.parent
-GROUP BY mhl_rubrieken.name
-
-// zorgen dat rubriek en subrubiek samen in column komen indien van toepassing volgens voorbeeld. 
-
-9.4: 
-
-SELECT mhl_rubrieken.name AS 'name', 
-IFNULL(SUM(mhl_hitcount.hitcount), 'Geen hits')
+9.2 :SELECT a.gemeente, b.leverancier, b.total_hitcount, a.average_hitcount 
+FROM 
+(
+    	SELECT 
+        	g.id,
+        	l.name AS leverancier, 
+        	SUM(h.hitcount) AS total_hitcount
+    	FROM
+    		mhl_suppliers l
+    	INNER JOIN mhl_cities p ON l.city_ID=p.id
+    	INNER JOIN mhl_communes g ON p.commune_ID=g.id
+    	INNER JOIN mhl_districts d ON g.district_ID=d.id
+    	INNER JOIN mhl_hitcount h ON h.supplier_ID=l.id
+    	WHERE d.country_ID= (
+        	SELECT id
+        	FROM mhl_countries
+        	WHERE name='Nederland'
+    	)
+    	GROUP BY g.id, l.name
+) AS b
+INNER JOIN 
+(
+    SELECT 
+    	g.id, 
+    	SUM(h.hitcount)/COUNT(DISTINCT(h.supplier_ID)) AS average_hitcount, 
+    	g.name AS gemeente 
+    	FROM mhl_hitcount h
+	    INNER JOIN mhl_suppliers l ON h.supplier_ID=l.id
+    	INNER JOIN mhl_cities p ON l.city_ID=p.id
+    	INNER JOIN mhl_communes g ON p.commune_ID=g.id
+    	INNER JOIN mhl_districts d ON g.district_ID=d.id 
+    	WHERE d.country_ID = (
+	        SELECT id
+    	    FROM mhl_countries
+        	WHERE name='Nederland'
+    	)
+    	GROUP BY g.id
+) AS a
+ON a.id=b.id
+GROUP BY a.id, b.leverancier
+HAVING b.total_hitcount > a.average_hitcount
+ORDER BY a.gemeente, (b.total_hitcount-a.average_hitcount) DESC
+9.3: SELECT
+    r.name AS rubriek,
+    COUNT(srv.mhl_suppliers_ID) AS aantal_leveranciers
+FROM
+    mhl_rubrieken r
+LEFT JOIN
+    mhl_suppliers_mhl_rubriek_view srv ON r.parent = srv.mhl_rubriek_view_ID
+GROUP BY
+    rubriek
+9.4: SELECT mhl_rubrieken.name AS 'name', 
+IFNULL(SUM(mhl_hitcount.hitcount), 'Geen hits') AS 'total hitcount' 
 FROM mhl_rubrieken
-JOIN mhl_suppliers_mhl_rubriek_view ON mhl_suppliers_mhl_rubriek_view.mhl_rubriek_view_ID = mhl_rubrieken.id
-JOIN mhl_hitcount ON mhl_suppliers_mhl_rubriek_view.mhl_suppliers_ID = mhl_hitcount.hitcount
+LEFT JOIN mhl_suppliers_mhl_rubriek_view ON mhl_suppliers_mhl_rubriek_view.mhl_rubriek_view_ID = mhl_rubrieken.parent
+LEFT JOIN mhl_hitcount ON mhl_suppliers_mhl_rubriek_view.mhl_suppliers_ID = mhl_hitcount.supplier_ID
 GROUP BY mhl_rubrieken.name;
-
-// zorgen dat deel van 9.3 werkt en dan kijken naar uitwerking 
-
-
-
-
-
-
-
-
-
-
-10.1: 
-
-SELECT mhl_suppliers.name, 
-mhl_suppliers.huisnr AS 'JOINDATE'
+10.1: SELECT mhl_suppliers.id, 
+DATE_FORMAT(mhl_suppliers.joindate, GET_FORMAT(DATE,'EUR')) AS 'joindate'
 FROM mhl_suppliers
-WHERE JOINDATE IS IN <7 DAGEN FROM END OF month
-
-// joindate? + query fixen om leverancier met joindate 7 dagen voor eind van de maand weer te geven. 
-
-
-
-
-
-
-
+WHERE DAYOFMONTH(LAST_DAY(joindate))-DAYOFMONTH(joindate) <= 7
+10.2:SELECT mhl_suppliers.id, 
+mhl_suppliers.joindate AS 'joindate',
+TO_DAYS(CURDATE())-TO_DAYS(joindate) AS `dagen lid`
+FROM mhl_suppliers
+ORDER BY `dagen lid` ASC
+10.3: SELECT DAYNAME(joindate) AS 'dag van de week',
+COUNT(EXTRACT(DAY FROM joindate))AS 'Aantal aanmeldingen'
+FROM mhl_suppliers
+GROUP BY DAYNAME(joindate), DAYOFWEEK(joindate)
+ORDER BY DAYOFWEEK(joindate) 
+10.4: SELECT EXTRACT(YEAR FROM joindate) AS 'years',
+EXTRACT(MONTH FROM joindate) AS 'months',
+COUNT(mhl_suppliers.id)
+FROM mhl_suppliers 
+GROUP BY years, months
 11.1: SELECT name,
 CONCAT(UPPER(SUBSTRING(name, 1, 1)), SUBSTRING(name, 2, 100)) AS 'nice_name'
 FROM mhl_cities  

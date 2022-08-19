@@ -13,15 +13,26 @@
 
 <body>
     <form action="test.php" method="POST" enctype="multipart/form-data">
-        <div>       
-        <Button type="button" id="b1">1. Base</button>
+        <div id="menu">   
+        <script>
+        let tabs = ["1. Base", "2. User", "3. File", "4. Datatime", "5. Numeric",
+         "6. MC", "7. Optional Dialogs", "8. Buttons"];
+            for (let x in tabs)
+            {
+                let btn = document.createElement('button');
+                btn.innerHTML = tabs[x];
+                btn.setAttribute('id', 'b'+ x);
+                document.getElementById('menu').appendChild(btn);
+            } 
+        </script>    
+        <!-- <Button type="button" id="b1">1. Base</button>
         <Button type="button" id="b2">2. User</button>
         <Button type="button" id="b3">3. File</button>
         <Button type="button" id="b4">4. Datatime</button>
         <Button type="button" id="b5">5. Numeric</button>
         <Button type="button" id="b6">6. MC</button>
         <Button type="button" id="b7">7. Optional Dialogs</button>
-        <Button type="button" id="b8">8. Buttons</button>
+        <Button type="button" id="b8">8. Buttons</button> -->
         </div>
         <fieldset id="fs_base">
             <legend>Base</legend>
@@ -32,7 +43,17 @@
             <label for="autocomplete">Autocomplete met Nederlandse provincies als mogelijke waardes</label>
             <input type="text" id="autocomplete" name="autocomplete" list="tickmarks" required>
             <datalist id="tickmarks">
-                <option value="Drenthe"></option>
+                <script> 
+                let provincies = ["Drenthe", "Flevoland", "Friesland", "Gelderland", "Groningen", "Limburg", 
+                "Noord-Brabant", "Noord-Holland", "Overijssel", "Utrecht", "Zeeland", "Zuid-Holland"];
+                for (let x in provincies)
+                {
+                    let opt = document.createElement('option');
+                    opt.innerHTML = provincies[x];
+                    document.getElementById('tickmarks').appendChild(opt);
+                }
+                </script>
+                <!-- <option value="Drenthe"></option>
                 <option value="Flevoland"></option>
                 <option value="Friesland"></option>
                 <option value="Gelderland"></option>
@@ -43,7 +64,7 @@
                 <option value="Overijssel"></option>
                 <option value="Utrecht"></option>
                 <option value="Zeeland"></option>
-                <option value="Zuid-Holland"></option>
+                <option value="Zuid-Holland"></option> -->
             </datalist>
 
             <label for="vastelengte">Vaste lengte 12, minimaal 1 spatie, verder enkel hoofdletters en -</label>
@@ -68,10 +89,9 @@
 
             <label for="password">Password</label>
             <input type="password" id="password" name="password" placeholder="Password" required>
-            <button id="password_toggle">
-                toggle show/hide
-            </button>
-            
+            <span id="password_toggle"></span>
+
+
             <label for="telefoon">Telefoon</label>
             <input type="tel" id="telefoon" placeholder="0612345678" required>
 
