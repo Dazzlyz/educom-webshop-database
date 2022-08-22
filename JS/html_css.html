@@ -8,14 +8,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HTML/CSS Opdrachten</title>    
     <link rel="stylesheet" href="opdracht.css">
-    <script src="./html_css.js"></script>
+    <script src="./html_css.js?t=1"></script>
 </head>
 
 <body>
     <form action="test.php" method="POST" enctype="multipart/form-data">
-        <div id="menu">   
-        <script>
-        let tabs = ["1. Base", "2. User", "3. File", "4. Datatime", "5. Numeric",
+        <nav id="menu">   
+        <!-- <script>
+          let tabs = ["1. Base", "2. User", "3. File", "4. Datatime", "5. Numeric",
          "6. MC", "7. Optional Dialogs", "8. Buttons"];
             for (let x in tabs)
             {
@@ -23,36 +23,27 @@
                 btn.innerHTML = tabs[x];
                 btn.setAttribute('id', 'b'+ x);
                 document.getElementById('menu').appendChild(btn);
-            } 
-        </script>    
-        <!-- <Button type="button" id="b1">1. Base</button>
-        <Button type="button" id="b2">2. User</button>
-        <Button type="button" id="b3">3. File</button>
-        <Button type="button" id="b4">4. Datatime</button>
-        <Button type="button" id="b5">5. Numeric</button>
-        <Button type="button" id="b6">6. MC</button>
-        <Button type="button" id="b7">7. Optional Dialogs</button>
-        <Button type="button" id="b8">8. Buttons</button> -->
-        </div>
+            }   
+      
+        </script> -->
+        <Button type="button" id="b0">1. Base</button>
+        <Button type="button" id="b1">2. User</button>
+        <Button type="button" id="b2">3. File</button>
+        <Button type="button" id="b3">4. Datatime</button>
+        <Button type="button" id="b4">5. Numeric</button>
+        <Button type="button" id="b5">6. MC</button>
+        <Button type="button" id="b6">7. Optional Dialogs</button>
+        <Button type="button" id="b7">8. Buttons</button>
+        </nav>
         <fieldset id="fs_base">
-            <legend>Base</legend>
+            <h2>1. Base</h2>
 
             <label for="lengte80">Lengte 80</label>
             <input type="text" id="lengte80" name="lengte80" maxlength="80" placeholder="Text" required>
 
             <label for="autocomplete">Autocomplete met Nederlandse provincies als mogelijke waardes</label>
             <input type="text" id="autocomplete" name="autocomplete" list="tickmarks" required>
-            <datalist id="tickmarks">
-                <script> 
-                let provincies = ["Drenthe", "Flevoland", "Friesland", "Gelderland", "Groningen", "Limburg", 
-                "Noord-Brabant", "Noord-Holland", "Overijssel", "Utrecht", "Zeeland", "Zuid-Holland"];
-                for (let x in provincies)
-                {
-                    let opt = document.createElement('option');
-                    opt.innerHTML = provincies[x];
-                    document.getElementById('tickmarks').appendChild(opt);
-                }
-                </script>
+            <datalist id="tickmarks">             
                 <!-- <option value="Drenthe"></option>
                 <option value="Flevoland"></option>
                 <option value="Friesland"></option>
@@ -85,7 +76,7 @@
             </div>
         </fieldset>
         <fieldset id="fs_user" hidden>
-            <legend>User</legend>
+            <h2>2. User</h2>
 
             <label for="password">Password</label>
             <input type="password" id="password" name="password" placeholder="Password" required>
@@ -102,7 +93,7 @@
             <input type="url" id="url" name="url" placeholder="http://www.man-kind.nl/" required>
         </fieldset>
         <fieldset id="fs_file" hidden>
-            <legend>File</legend>
+            <h2>3. File</h2>
 
             <label for="meerdere">meerdere files van het type pdf/doc/docx</label>
             <input type="file" id="meerdere" name="meerdere" accept=".pdf,.doc,.docx" multiple>
@@ -111,7 +102,7 @@
             <input type="file" id="enkele" name="enkele" accept=".jpg,.jpeg,.webp,.png">
         </fieldset>
         <fieldset id="fs_datetime" hidden>
-            <legend>DateTime</legend>
+            <h2>4. Datetime</h2>
 
             <label for="date">Date</label>
             <input type="date" id="date" name="date" required>
@@ -129,7 +120,7 @@
             <input type="month" id="month" name="month" required>
         </fieldset>
         <fieldset id='fs_numeric' hidden>
-            <legend>Numeric</legend>
+            <h2>5. Numeric</h2>
 
             <label for="num-standaard">standaard, min 10 max 100</label>
             <input type="number" id="num-standaard" name="num-standaard" value="10" min="10" max="100" required>
@@ -148,7 +139,7 @@
             </datalist>
         </fieldset>
         <fieldset id="fs_mc" hidden>
-            <legend>MC</legend>
+            <h2>6. MC</h2>
 
             <label for="checkbox">Enkele checkbox</label>
             <input type="checkbox" id="checkbox" name="checkbox" required>
@@ -226,13 +217,13 @@
             </select>
         </fieldset>
         <fieldset id="fs_optional" hidden>
-            <legend>Optional Dialogs</legend>
+            <h2>7. Optional Dialogs</h2>
             
             <label for="colorpicker">Color Picker</label>
             <input type="color" id="colorpicker" name="colorpicker" required>
         </fieldset>
         <fieldset id="fs_buttons" hidden>
-            <legend>Buttons</legend>
+            <h2>8. Buttons</h2>
             
             <label for="reset">Reset</label>
             <input type="reset" id="reset" name="reset">

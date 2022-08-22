@@ -15,4 +15,5 @@ function handlePost($page, $post_result)
 {
     $page == 'contact' && isResultArrayComplete($post_result) ? showThankYou($post_result) : generateForm($page, $post_result);
 }
+
 ?>

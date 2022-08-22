@@ -14,7 +14,9 @@ function documentReady()
     updateNumberCount();
     addPasswordFunction();
     toggleFieldsets();  
+    generateProvinces();
     focusOut();
+    // generateMenu();
 }	
 
 function togglePassword() // ???!?!?!? post resultaten en check eerst alle velden? 
@@ -31,6 +33,20 @@ function togglePassword() // ???!?!?!? post resultaten en check eerst alle velde
         }
     })
 }
+
+function generateMenu()
+{
+    let tabs = ["1. Base", "2. User", "3. File", "4. Datatime", "5. Numeric",
+         "6. MC", "7. Optional Dialogs", "8. Buttons"];
+            for (let x in tabs)
+            {
+                let btn = document.createElement('button');
+                btn.innerHTML = tabs[x];
+                btn.setAttribute('id', 'b'+ x);
+                document.getElementById('menu').after(btn);
+            } 
+}
+
 function addPasswordFunction()
 {
     const pw_input = document.getElementById('password');
@@ -38,6 +54,19 @@ function addPasswordFunction()
     pw_button.innerHTML = '[&#128584;]';
     pw_input.after(pw_button);
     pw_button.addEventListener('click', togglePassWord);
+}
+
+function generateProvinces()
+{
+    let provincies = ["Drenthe", "Flevoland", "Friesland", "Gelderland", "Groningen", "Limburg", 
+                    "Noord-Brabant", "Noord-Holland", "Overijssel", "Utrecht", "Zeeland", "Zuid-Holland"];
+        for (let x in provincies)
+        {
+            let opt = document.createElement('option');
+            opt.innerHTML = provincies[x];
+            document.getElementById('tickmarks').appendChild(opt);
+        }
+    
 }
 
 function togglePassWord()
@@ -60,109 +89,150 @@ function focusOut()
  );
 }
 
-
-
-
 // checken hoe functies nu met array werken, 1+2 linken naar base en rest naar een te ver terug? 
 function toggleFieldsets()
 {
-    document.getElementById("b1").addEventListener('click', () => 
+    let fsets = {'b0': 'fs_base', 'b1': 'fs_user', 'b2': 'fs_file', 'b3':'fs_datetime', 'b4': 'fs_numeric', 'b5': 'fs_mc', 'b6': 'fs_optional', 'b7': 'fs_buttons' }
+    
+    for (var key in fsets)
     {
-        document.getElementById("fs_base").hidden = false;
-        document.getElementById("fs_user").hidden = true;
-        document.getElementById("fs_file").hidden = true;
-        document.getElementById("fs_datetime").hidden = true;
-        document.getElementById("fs_numeric").hidden = true;
-        document.getElementById("fs_mc").hidden = true;
-        document.getElementById("fs_optional").hidden = true;
-        document.getElementById("fs_buttons").hidden = true;
-    }, 
-    false)
-    document.getElementById("b2").addEventListener('click', () => 
-    {
-        document.getElementById("fs_base").hidden = true;
-        document.getElementById("fs_user").hidden = false;
-        document.getElementById("fs_file").hidden = true;
-        document.getElementById("fs_datetime").hidden = true;
-        document.getElementById("fs_numeric").hidden = true;
-        document.getElementById("fs_mc").hidden = true;
-        document.getElementById("fs_optional").hidden = true;
-        document.getElementById("fs_buttons").hidden = true;
-    }, 
-    false)
-    document.getElementById("b3").addEventListener('click', () => 
-    {
-        document.getElementById("fs_base").hidden = true;
-        document.getElementById("fs_user").hidden = true;
-        document.getElementById("fs_file").hidden = false;
-        document.getElementById("fs_datetime").hidden = true;
-        document.getElementById("fs_numeric").hidden = true;
-        document.getElementById("fs_mc").hidden = true;
-        document.getElementById("fs_optional").hidden = true;
-        document.getElementById("fs_buttons").hidden = true;
-    }, 
-    false)
-    document.getElementById("b4").addEventListener('click', () => 
-    {
-        document.getElementById("fs_base").hidden = true;
-        document.getElementById("fs_user").hidden = true;
-        document.getElementById("fs_file").hidden = true;
-        document.getElementById("fs_datetime").hidden = false;
-        document.getElementById("fs_numeric").hidden = true;
-        document.getElementById("fs_mc").hidden = true;
-        document.getElementById("fs_optional").hidden = true;
-        document.getElementById("fs_buttons").hidden = true;
-    }, 
-    false)
-    document.getElementById("b5").addEventListener('click', () => 
-    {
-        document.getElementById("fs_base").hidden = true;
-        document.getElementById("fs_user").hidden = true;
-        document.getElementById("fs_file").hidden = true;
-        document.getElementById("fs_datetime").hidden = true;
-        document.getElementById("fs_numeric").hidden = false;
-        document.getElementById("fs_mc").hidden = true;
-        document.getElementById("fs_optional").hidden = true;
-        document.getElementById("fs_buttons").hidden = true;
-    }, 
-    false)
-    document.getElementById("b6").addEventListener('click', () => 
-    {
-        document.getElementById("fs_base").hidden = true;
-        document.getElementById("fs_user").hidden = true;
-        document.getElementById("fs_file").hidden = true;
-        document.getElementById("fs_datetime").hidden = true;
-        document.getElementById("fs_numeric").hidden = true;
-        document.getElementById("fs_mc").hidden = false;
-        document.getElementById("fs_optional").hidden = true;
-        document.getElementById("fs_buttons").hidden = true;
+        document.getElementById(key).addEventListener('click', () => 
+        {
+            document.getElementById(fsets[key]).hidden = false;
+        }, 
+        false)
+    }
 
-    }, 
-    false)
-    document.getElementById("b7").addEventListener('click', () => 
-    {
-        document.getElementById("fs_base").hidden = true;
-        document.getElementById("fs_user").hidden = true;
-        document.getElementById("fs_file").hidden = true;
-        document.getElementById("fs_datetime").hidden = true;
-        document.getElementById("fs_numeric").hidden = true;
-        document.getElementById("fs_mc").hidden = true;
-        document.getElementById("fs_optional").hidden = false;
-        document.getElementById("fs_buttons").hidden = true;
-    }, 
-    false)
-    document.getElementById("b8").addEventListener('click', () => 
-    {
-        document.getElementById("fs_base").hidden = true;
-        document.getElementById("fs_user").hidden = true;
-        document.getElementById("fs_file").hidden = true;
-        document.getElementById("fs_datetime").hidden = true;
-        document.getElementById("fs_numeric").hidden = true;
-        document.getElementById("fs_mc").hidden = true;
-        document.getElementById("fs_optional").hidden = true;
-        document.getElementById("fs_buttons").hidden = false;
-    }, 
-    false)
+    // document.getElementById("b0").addEventListener('click', () => 
+    // {
+    //     let val = "b0";
+    //     for (var key in fsets)        
+    //     {
+    //         if (key == val)
+    //         {
+    //             document.getElementById(fsets[key]).hidden = false;
+    //         }
+    //         else
+    //         {
+    //             document.getElementById(fsets[key]).hidden = true;
+    //         }            
+    //     }
+    // }, 
+    // false)
+
+    // document.getElementById("b1").addEventListener('click', () => 
+    // {
+    //     let val = "b1";
+    //     for (var key in fsets)        
+    //     {
+    //         if (key == val)
+    //         {
+    //             document.getElementById(fsets[key]).hidden = false;
+    //         }
+    //         else
+    //         {
+    //             document.getElementById(fsets[key]).hidden = true;
+    //         }            
+    //     }
+    // }, 
+    // false)
+    // document.getElementById("b2").addEventListener('click', () => 
+    // {
+    //     let val = "b2";
+    //     for (var key in fsets)        
+    //     {
+    //         if (key == val)
+    //         {
+    //             document.getElementById(fsets[key]).hidden = false;
+    //         }
+    //         else
+    //         {
+    //             document.getElementById(fsets[key]).hidden = true;
+    //         }            
+    //     }
+    // }, 
+    // false)
+    // document.getElementById("b3").addEventListener('click', () => 
+    // {
+    //     let val = "b3";
+    //     for (var key in fsets)        
+    //     {
+    //         if (key == val)
+    //         {
+    //             document.getElementById(fsets[key]).hidden = false;
+    //         }
+    //         else
+    //         {
+    //             document.getElementById(fsets[key]).hidden = true;
+    //         }            
+    //     }
+    // }, 
+    // false)
+    // document.getElementById("b4").addEventListener('click', () => 
+    // {
+    //     let val = "b4";
+    //     for (var key in fsets)        
+    //     {
+    //         if (key == val)
+    //         {
+    //             document.getElementById(fsets[key]).hidden = false;
+    //         }
+    //         else
+    //         {
+    //             document.getElementById(fsets[key]).hidden = true;
+    //         }            
+    //     }
+    // }, 
+    // false)
+    // document.getElementById("b5").addEventListener('click', () => 
+    // {
+    //     let val = "b5";
+    //     for (var key in fsets)        
+    //     {
+    //         if (key == val)
+    //         {
+    //             document.getElementById(fsets[key]).hidden = false;
+    //         }
+    //         else
+    //         {
+    //             document.getElementById(fsets[key]).hidden = true;
+    //         }            
+    //     }
+
+    // }, 
+    // false)
+    // document.getElementById("b6").addEventListener('click', () => 
+    // {
+    //     let val = "b6";
+    //     for (var key in fsets)        
+    //     {
+    //         if (key == val)
+    //         {
+    //             document.getElementById(fsets[key]).hidden = false;
+    //         }
+    //         else
+    //         {
+    //             document.getElementById(fsets[key]).hidden = true;
+    //         }            
+    //     }
+    // }, 
+    // false)
+    // document.getElementById("b7").addEventListener('click', () => 
+    // {
+    //     let val = "b7";
+    //     for (var key in fsets)        
+    //     {
+    //         if (key == val)
+    //         {
+    //             document.getElementById(fsets[key]).hidden = false;
+    //         }
+    //         else
+    //         {
+    //             document.getElementById(fsets[key]).hidden = true;
+    //         }            
+    //     }
+    // }, 
+    // false)
 }
 
 function updateNumberCount()
