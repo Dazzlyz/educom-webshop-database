@@ -8,6 +8,8 @@
 // button menu structureren door klein te testen 
 
 
+
+// ergens een ajax functie uitproberen? 
 function documentReady()
 {
     console.log("===== DOC READY ======");
@@ -94,145 +96,145 @@ function toggleFieldsets()
 {
     let fsets = {'b0': 'fs_base', 'b1': 'fs_user', 'b2': 'fs_file', 'b3':'fs_datetime', 'b4': 'fs_numeric', 'b5': 'fs_mc', 'b6': 'fs_optional', 'b7': 'fs_buttons' }
     
-    for (var key in fsets)
+    // for (var key in fsets)
+    // {
+    //     document.getElementById(key).addEventListener('click', () => 
+    //     {
+    //         document.getElementById(fsets[key]).hidden = false;
+    //     }, 
+    //     false)
+    // }
+
+    document.getElementById("b0").addEventListener('click', () => 
     {
-        document.getElementById(key).addEventListener('click', () => 
+        let val = "b0";
+        for (var key in fsets)        
         {
-            document.getElementById(fsets[key]).hidden = false;
-        }, 
-        false)
-    }
+            if (key == val)
+            {
+                document.getElementById(fsets[key]).hidden = false;
+            }
+            else
+            {
+                document.getElementById(fsets[key]).hidden = true;
+            }            
+        }
+    }, 
+    false)
 
-    // document.getElementById("b0").addEventListener('click', () => 
-    // {
-    //     let val = "b0";
-    //     for (var key in fsets)        
-    //     {
-    //         if (key == val)
-    //         {
-    //             document.getElementById(fsets[key]).hidden = false;
-    //         }
-    //         else
-    //         {
-    //             document.getElementById(fsets[key]).hidden = true;
-    //         }            
-    //     }
-    // }, 
-    // false)
+    document.getElementById("b1").addEventListener('click', () => 
+    {
+        let val = "b1";
+        for (var key in fsets)        
+        {
+            if (key == val)
+            {
+                document.getElementById(fsets[key]).hidden = false;
+            }
+            else
+            {
+                document.getElementById(fsets[key]).hidden = true;
+            }            
+        }
+    }, 
+    false)
+    document.getElementById("b2").addEventListener('click', () => 
+    {
+        let val = "b2";
+        for (var key in fsets)        
+        {
+            if (key == val)
+            {
+                document.getElementById(fsets[key]).hidden = false;
+            }
+            else
+            {
+                document.getElementById(fsets[key]).hidden = true;
+            }            
+        }
+    }, 
+    false)
+    document.getElementById("b3").addEventListener('click', () => 
+    {
+        let val = "b3";
+        for (var key in fsets)        
+        {
+            if (key == val)
+            {
+                document.getElementById(fsets[key]).hidden = false;
+            }
+            else
+            {
+                document.getElementById(fsets[key]).hidden = true;
+            }            
+        }
+    }, 
+    false)
+    document.getElementById("b4").addEventListener('click', () => 
+    {
+        let val = "b4";
+        for (var key in fsets)        
+        {
+            if (key == val)
+            {
+                document.getElementById(fsets[key]).hidden = false;
+            }
+            else
+            {
+                document.getElementById(fsets[key]).hidden = true;
+            }            
+        }
+    }, 
+    false)
+    document.getElementById("b5").addEventListener('click', () => 
+    {
+        let val = "b5";
+        for (var key in fsets)        
+        {
+            if (key == val)
+            {
+                document.getElementById(fsets[key]).hidden = false;
+            }
+            else
+            {
+                document.getElementById(fsets[key]).hidden = true;
+            }            
+        }
 
-    // document.getElementById("b1").addEventListener('click', () => 
-    // {
-    //     let val = "b1";
-    //     for (var key in fsets)        
-    //     {
-    //         if (key == val)
-    //         {
-    //             document.getElementById(fsets[key]).hidden = false;
-    //         }
-    //         else
-    //         {
-    //             document.getElementById(fsets[key]).hidden = true;
-    //         }            
-    //     }
-    // }, 
-    // false)
-    // document.getElementById("b2").addEventListener('click', () => 
-    // {
-    //     let val = "b2";
-    //     for (var key in fsets)        
-    //     {
-    //         if (key == val)
-    //         {
-    //             document.getElementById(fsets[key]).hidden = false;
-    //         }
-    //         else
-    //         {
-    //             document.getElementById(fsets[key]).hidden = true;
-    //         }            
-    //     }
-    // }, 
-    // false)
-    // document.getElementById("b3").addEventListener('click', () => 
-    // {
-    //     let val = "b3";
-    //     for (var key in fsets)        
-    //     {
-    //         if (key == val)
-    //         {
-    //             document.getElementById(fsets[key]).hidden = false;
-    //         }
-    //         else
-    //         {
-    //             document.getElementById(fsets[key]).hidden = true;
-    //         }            
-    //     }
-    // }, 
-    // false)
-    // document.getElementById("b4").addEventListener('click', () => 
-    // {
-    //     let val = "b4";
-    //     for (var key in fsets)        
-    //     {
-    //         if (key == val)
-    //         {
-    //             document.getElementById(fsets[key]).hidden = false;
-    //         }
-    //         else
-    //         {
-    //             document.getElementById(fsets[key]).hidden = true;
-    //         }            
-    //     }
-    // }, 
-    // false)
-    // document.getElementById("b5").addEventListener('click', () => 
-    // {
-    //     let val = "b5";
-    //     for (var key in fsets)        
-    //     {
-    //         if (key == val)
-    //         {
-    //             document.getElementById(fsets[key]).hidden = false;
-    //         }
-    //         else
-    //         {
-    //             document.getElementById(fsets[key]).hidden = true;
-    //         }            
-    //     }
-
-    // }, 
-    // false)
-    // document.getElementById("b6").addEventListener('click', () => 
-    // {
-    //     let val = "b6";
-    //     for (var key in fsets)        
-    //     {
-    //         if (key == val)
-    //         {
-    //             document.getElementById(fsets[key]).hidden = false;
-    //         }
-    //         else
-    //         {
-    //             document.getElementById(fsets[key]).hidden = true;
-    //         }            
-    //     }
-    // }, 
-    // false)
-    // document.getElementById("b7").addEventListener('click', () => 
-    // {
-    //     let val = "b7";
-    //     for (var key in fsets)        
-    //     {
-    //         if (key == val)
-    //         {
-    //             document.getElementById(fsets[key]).hidden = false;
-    //         }
-    //         else
-    //         {
-    //             document.getElementById(fsets[key]).hidden = true;
-    //         }            
-    //     }
-    // }, 
-    // false)
+    }, 
+    false)
+    document.getElementById("b6").addEventListener('click', () => 
+    {
+        let val = "b6";
+        for (var key in fsets)        
+        {
+            if (key == val)
+            {
+                document.getElementById(fsets[key]).hidden = false;
+            }
+            else
+            {
+                document.getElementById(fsets[key]).hidden = true;
+            }            
+        }
+    }, 
+    false)
+    document.getElementById("b7").addEventListener('click', () => 
+    {
+        let val = "b7";
+        for (var key in fsets)        
+        {
+            if (key == val)
+            {
+                document.getElementById(fsets[key]).hidden = false;
+            }
+            else
+            {
+                document.getElementById(fsets[key]).hidden = true;
+            }            
+        }
+    }, 
+    false)
 }
 
 function updateNumberCount()
