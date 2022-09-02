@@ -60,7 +60,7 @@ function getUserDataFromDb($email)
     $conn = connectDatabase();
     $checked_email =  mysqli_real_escape_string($conn, $email);
     
-    $sql = 'SELECT mail, name, password FROM users WHERE mail ="'.$checked_email.'"';
+    $sql = 'SELECT * FROM users WHERE mail ="'.$checked_email.'"';
     $result = mysqli_query($conn, $sql);	
     
     checkQuery($conn, $sql, 'Error no entry found for this account, please try again');    
@@ -112,25 +112,27 @@ function checkQuery($conn, $sql, $err_msg)
 
 function addOrder()
 {		
-    $conn = connectDatabase();	   
-    $checked_mail = mysqli_real_escape_string($conn, $_SESSION['email']);   
-    $checked_name = mysqli_real_escape_string($conn, $_SESSION['username']);
+    $conn = connectDatabase();	    
 
     foreach($_SESSION['shoppingcart'] as $fruit => $values)
     {
         if ($values['quantity'] > 0)
         {
-            $names .= $fruit . $values['quantity'];
+            // $sql = 'INSERT INTO orders(product, user_id)          
+            // VALUES("'.$productID.'", "'.$_SESSION['id'].'")';
+
+            // checkQuery($conn, $sql, 'Error entering order please try again');     
+
+
+            $names .= 'Product id:' . $values['id'] . ' Quantity:' . $values['quantity'] . ', ';
         }
     }
 
-    $sql = 'INSERT INTO orders(product, quantity, user)          
-    VALUES("'.$names.'", "'.$checked_name.'" , "'.$checked_mail.'")';
+    $sql = 'INSERT INTO orders(product, user_id)          
+    VALUES("'.$names.'", "'.$_SESSION['id'].'")';
 
-    checkQuery($conn, $sql, 'Error entering order please try again');   
-    
+    checkQuery($conn, $sql, 'Error entering order please try again');     
 
-    
     mysqli_close($conn);
 }	
 ?> 

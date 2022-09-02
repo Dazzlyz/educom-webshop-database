@@ -34,7 +34,7 @@ function validateRequest() : array
             if (in_array($request['page'] , getAvailableProducts()))
             {
                 manageCart($_POST);	                
-                // header('Location: http://localhost/educom-webshop-database/index.php?page=shoppingcart');                
+                header('Location: http://localhost/educom-webshop-database/index.php?page=shoppingcart');                
             }	       
             else 
             {      
@@ -131,8 +131,8 @@ function generateContent($page, $post_result=array())
     try
     {        
         if (in_array($page , getAvailableProducts()))
-        {           
-            showDetail($_SESSION['id']);      
+        {                 
+            showDetail($_SESSION['id']);                     
         }
         else 
         {

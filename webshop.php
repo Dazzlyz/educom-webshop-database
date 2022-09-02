@@ -49,7 +49,7 @@ function checkAddToCart($product)
 function addToCart($product)
 {       
     $database_result = getProductFromId($product['id']);
-    return array($database_result['name'] => array('price' => $database_result['price'], 'quantity' => 1));     
+    return array($database_result['name'] => array('price' => $database_result['price'], 'quantity' => 1, 'id' => $product['id'] ));     
 }
 
 function showCart()
