@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-09-28T12:23:54.107Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36" etag="pPVtonYTWOYWYPIjGBZC" version="20.3.7" type="github">
+<mxfile host="app.diagrams.net" modified="2022-09-28T13:30:34.708Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36" etag="In12Fv3_-2RqIVPP45B2" version="20.3.7" type="github">
   <diagram id="TjNn884HiWf8S_166x_2" name="Pagina-1">
     <mxGraphModel dx="1790" dy="888" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -20,7 +20,7 @@
           <mxGeometry x="10" y="525" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="xKfvoQbatHfrXLr5aNLy-7" value="Organisatie onderdelen en koppelingen in SPRO gaan bekijken" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="160" y="800" width="120" height="60" as="geometry" />
+          <mxGeometry x="10" y="810" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="xKfvoQbatHfrXLr5aNLy-12" value="" style="group" vertex="1" connectable="0" parent="1">
           <mxGeometry x="210" y="155" width="320" height="170" as="geometry" />
