@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-09-29T09:10:43.050Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36" etag="R6jL662B5FZeEiRdZGVU" version="20.3.7" type="github">
+<mxfile host="app.diagrams.net" modified="2022-09-29T10:29:38.269Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36" etag="BsvRcYvZQyyL0PbfqeVL" version="20.3.7" type="github">
   <diagram id="TjNn884HiWf8S_166x_2" name="Pagina-1">
     <mxGraphModel dx="1790" dy="888" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -11,16 +11,16 @@
           <mxGeometry x="10" y="210" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="xKfvoQbatHfrXLr5aNLy-3" value="Data verkenning" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="280" y="360" width="200" height="100" as="geometry" />
+          <mxGeometry x="280" y="350" width="200" height="100" as="geometry" />
         </mxCell>
         <mxCell id="xKfvoQbatHfrXLr5aNLy-4" value="Customizing verkenning" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="280" y="660" width="200" height="100" as="geometry" />
+          <mxGeometry x="280" y="670" width="200" height="100" as="geometry" />
         </mxCell>
         <mxCell id="xKfvoQbatHfrXLr5aNLy-6" value="Master data transacties bekijken" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="10" y="525" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="xKfvoQbatHfrXLr5aNLy-7" value="Organisatie onderdelen en koppelingen in (SPRO) gaan bekijken" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="10" y="800" width="120" height="70" as="geometry" />
+          <mxGeometry x="10" y="830" width="120" height="70" as="geometry" />
         </mxCell>
         <mxCell id="xKfvoQbatHfrXLr5aNLy-12" value="" style="group" parent="1" vertex="1" connectable="0">
           <mxGeometry x="210" y="155" width="320" height="170" as="geometry" />
@@ -128,7 +128,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="DAWMOXjK-Gb3CWLf0RTG-1" value="" style="group" vertex="1" connectable="0" parent="1">
-          <mxGeometry x="210" y="770" width="320" height="170" as="geometry" />
+          <mxGeometry x="210" y="790" width="320" height="170" as="geometry" />
         </mxCell>
         <mxCell id="DAWMOXjK-Gb3CWLf0RTG-2" value="&lt;blockquote style=&quot;margin: 0 0 0 40px; border: none; padding: 0px;&quot;&gt;&lt;blockquote style=&quot;margin: 0 0 0 40px; border: none; padding: 0px;&quot;&gt;&lt;br&gt;&lt;/blockquote&gt;&lt;blockquote style=&quot;margin: 0 0 0 40px; border: none; padding: 0px;&quot;&gt;Voorbeeld voor het bekijken van&amp;nbsp;&lt;/blockquote&gt;&lt;blockquote style=&quot;margin: 0 0 0 40px; border: none; padding: 0px;&quot;&gt;verschillende plants in de&amp;nbsp;&lt;/blockquote&gt;&lt;blockquote style=&quot;margin: 0 0 0 40px; border: none; padding: 0px;&quot;&gt;organisatie,&amp;nbsp;&lt;span style=&quot;background-color: initial;&quot;&gt;vele opties&amp;nbsp;&lt;/span&gt;&lt;/blockquote&gt;&lt;blockquote style=&quot;margin: 0 0 0 40px; border: none; padding: 0px;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;beschikbaar in SPRO&amp;nbsp;&lt;/span&gt;&lt;/blockquote&gt;&lt;blockquote style=&quot;margin: 0 0 0 40px; border: none; padding: 0px;&quot;&gt;enterprise structure om verder de&amp;nbsp;&lt;/blockquote&gt;&lt;blockquote style=&quot;margin: 0 0 0 40px; border: none; padding: 0px;&quot;&gt;diepte in te gaan op organisatie&lt;/blockquote&gt;&lt;blockquote style=&quot;margin: 0 0 0 40px; border: none; padding: 0px;&quot;&gt;onderdelen en de in te stellen opties&lt;/blockquote&gt;&lt;blockquote style=&quot;margin: 0 0 0 40px; border: none; padding: 0px;&quot;&gt;hiervoor.&amp;nbsp;&lt;/blockquote&gt;&lt;/blockquote&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="DAWMOXjK-Gb3CWLf0RTG-1">
           <mxGeometry width="320" height="170" as="geometry" />
@@ -136,16 +136,37 @@
         <mxCell id="DAWMOXjK-Gb3CWLf0RTG-3" value="&lt;br&gt;&lt;br&gt;Nav: Enterprise Structure -&amp;gt; Definition -&amp;gt; Logistics General -&amp;gt; ....check plant -&amp;gt; IMG activity -&amp;gt; Define plant" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="DAWMOXjK-Gb3CWLf0RTG-1">
           <mxGeometry width="100" height="170" as="geometry" />
         </mxCell>
-        <mxCell id="DAWMOXjK-Gb3CWLf0RTG-4" value="Losse onderdelen in Enterprise structure" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="DAWMOXjK-Gb3CWLf0RTG-1">
+        <mxCell id="DAWMOXjK-Gb3CWLf0RTG-4" value="Plants bekijken in Enterprise structure" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="DAWMOXjK-Gb3CWLf0RTG-1">
           <mxGeometry width="320" height="30" as="geometry" />
         </mxCell>
         <mxCell id="DAWMOXjK-Gb3CWLf0RTG-6" value="Bijvoorbeeld:" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="140" y="790" width="60" height="30" as="geometry" />
+          <mxGeometry x="140" y="810" width="60" height="30" as="geometry" />
         </mxCell>
         <mxCell id="DAWMOXjK-Gb3CWLf0RTG-7" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="130" y="835" as="sourcePoint" />
-            <mxPoint x="210" y="835" as="targetPoint" />
+            <mxPoint x="130" y="864.5" as="sourcePoint" />
+            <mxPoint x="210" y="864.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="DAWMOXjK-Gb3CWLf0RTG-8" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="610" y="790" width="320" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="DAWMOXjK-Gb3CWLf0RTG-9" value="&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;Voorbeeld van customizing opties &lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;om een bete idee te krijgen &lt;br&gt;&amp;nbsp; &amp;nbsp;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;van tot in hoeverre elk onderdeel&lt;br&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;	&lt;/span&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp;van het proces ingesteld kan worden." style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="DAWMOXjK-Gb3CWLf0RTG-8">
+          <mxGeometry width="320" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="DAWMOXjK-Gb3CWLf0RTG-10" value="&lt;br&gt;&lt;br&gt;Nav: SCM extended warehouse management -&amp;gt; master data -&amp;gt; Storage bins -&amp;gt; Define..." style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="DAWMOXjK-Gb3CWLf0RTG-8">
+          <mxGeometry width="100" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="DAWMOXjK-Gb3CWLf0RTG-11" value="Instellingen Storage bins" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="DAWMOXjK-Gb3CWLf0RTG-8">
+          <mxGeometry width="320" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="DAWMOXjK-Gb3CWLf0RTG-12" value="Of module specifiekere informatie:" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="540" y="815" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="DAWMOXjK-Gb3CWLf0RTG-13" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" target="DAWMOXjK-Gb3CWLf0RTG-10">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="530" y="875" as="sourcePoint" />
+            <mxPoint x="580" y="990" as="targetPoint" />
           </mxGeometry>
         </mxCell>
       </root>
