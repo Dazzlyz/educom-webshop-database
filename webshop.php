@@ -1,8 +1,9 @@
 <?php
 
 function showWebshop()
-{       
-    $product_array = getAllProductInfo();   
+{      
+    $database = new Database(); 
+    $product_array = $database->getAllProductInfo();   
         
     foreach ($product_array as $product)
     {
@@ -17,7 +18,8 @@ function showWebshop()
 
 function showDetail($page)
 {      
-    $product = getProductFromId($page);
+    $database = new Database();
+    $product = $database->getProductFromId($page);
     if (empty($product))
     {
         echo '0 results';
@@ -48,7 +50,8 @@ function checkAddToCart($product)
 
 function addToCart($product)
 {       
-    $database_result = getProductFromId($product['id']);
+    $database = new Database();
+    $database_result = $database->getProductFromId($product['id']);
     return array($database_result['name'] => array('price' => $database_result['price'], 'quantity' => 1, 'id' => $product['id'] ));     
 }
 

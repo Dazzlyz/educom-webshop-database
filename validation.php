@@ -65,8 +65,9 @@ function checkRegister($global_post, $post_result, $key)
     switch ($key)
     {
         case 'mail' :		
-        {			
-            if (checkMailEntries($global_post['mail']))
+        {		
+            $database = new Database();	
+            if ($database->checkMailEntries($global_post['mail']))
             {
                 $post_result = handleError($post_result, ''.$key.'Err', 'Email al geregisteerd');
             }		
@@ -87,14 +88,15 @@ function checkRegister($global_post, $post_result, $key)
 
 function checkLogin($global_post, $post_result, $key)
 {	 	
-    if (isset($global_post['mail']) && (checkMailEntries($global_post['mail'])))
+    $database = new Database();	
+    if (isset($global_post['mail']) && ($database->checkMailEntries($global_post['mail'])))
     {       
-            $user_data = getUserDataFromDb($post_result['mail']); 
+            $user_data = $database->getUserDataFromDb($post_result['mail']); 
     }
     switch ($key)
     {
         case 'mail' :				
-            if (!checkMailEntries($global_post['mail']))
+            if (!$database->checkMailEntries($global_post['mail']))
             {
                 $post_result = handleError($post_result, ''.$key.'Err', 'Email onbekend');
             }		

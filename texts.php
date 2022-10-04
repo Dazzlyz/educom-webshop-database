@@ -1,7 +1,7 @@
 <?php
 
-// class TextBody
-// {
+class TextBody
+{
     function homeText() 
     {	   
         echo '<div class="standard">
@@ -29,5 +29,5 @@
         <p> De komende jaren hoop ik mij professioneel te ontwikkelen, en weer meer van de wereld te zien naar corona. </p> 
         </div> ';
     }
-// }
+}
 ?>

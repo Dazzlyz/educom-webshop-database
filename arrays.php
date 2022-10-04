@@ -12,7 +12,8 @@ function getAanhefOptions() : array
 
 function getAvailableProducts() : array
 {   
-    $all_products = getAllProductInfo();
+    $database = new Database();
+    $all_products = $database->getAllProductInfo();
     $all_array = [];
 
     foreach ($all_products as $product)

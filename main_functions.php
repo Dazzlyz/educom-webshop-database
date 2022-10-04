@@ -26,6 +26,8 @@ function validateRequest() : array
 {	
     $request = getRequest();
     $response = $request;	
+    $database = new Database();
+    
     try
     { 	   
     
@@ -38,6 +40,7 @@ function validateRequest() : array
             }	       
             else 
             {      
+                
                 $post_result = validatePostData($_POST, $post_result=array(), $request['page']);	
                 
                 switch ($request['page'])
@@ -52,14 +55,14 @@ function validateRequest() : array
                     case 'register' :				
                         if (isResultArrayComplete($post_result))
                         {	                           										
-                            insertData($post_result['mail'], $post_result['naam'], $post_result['wachtwoord'] );                       						
+                            $database->insertData($post_result['mail'], $post_result['naam'], $post_result['wachtwoord'] );                       						
                             $response['page'] = 'login';
                         }				             			
                     break;
                     case 'changepassword' :									
                         if (isResultArrayComplete($post_result))
                         {		
-                            updatePassword($post_result['nieuw_wachtwoord_controle'], $_SESSION['email']);                      
+                            $database->updatePassword($post_result['nieuw_wachtwoord_controle'], $_SESSION['email']);                      
                             updateSessionPassword($post_result['nieuw_wachtwoord_controle']);
                             $response['page'] = 'home';
                         }				            			
@@ -81,7 +84,7 @@ function validateRequest() : array
                     $_SESSION['id'] = getUrlVar('id', 1);
                     break;
                 case 'afrekenen' :                    
-                    addOrder();
+                    $database->addOrder();
                     emptyShoppingCart();                
                     header('Location: http://localhost/educom-webshop-database/index.php?page=home'); 
                 break;        
@@ -103,7 +106,8 @@ function showPage($response='')
     
     generateHeader($response['page']);
     
-    showMenu(getMenuItems(getArrayVar($_SESSION, 'username', '')));
+    $main_menu = new Menu();
+    $main_menu->showMenu($main_menu->getMenuItems(getArrayVar($_SESSION, 'username', '')));   
     
     generateContent($response['page']);
     
@@ -128,6 +132,7 @@ function getRequestedPage()
 
 function generateContent($page, $post_result=array())
 {	
+    
     try
     {        
         if (in_array($page , getAvailableProducts()))
@@ -139,14 +144,14 @@ function generateContent($page, $post_result=array())
             switch ($page)
             {
                 case 'home' :
-                    // $text = new TextBox();
-                    // $text->homeText();
-                    homeText();                  		
+                    $text = new TextBody();
+                    $text->homeText();
+                                      		
                 break;
                 case 'about' :                                   
-                    // $text = new TextBox();
-                    // $text->aboutText();		
-                    aboutText(); 
+                    $text = new TextBody();
+                    $text->aboutText();		
+                
                     
                 break;                   
                 case 'webshop':                   

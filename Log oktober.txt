@@ -1,0 +1,4 @@
+Maandagochtend: PyQt documentatie vanaf begin begonnen om de grond begrippen beter te begrijpen, widgets en singals/events doorgenomen
+Maandagmiddag: Tests en prototypes met ideeen uit theorie van vanochtend (bijv. lijst toevoegen, proberen meerdere windows aan te leggen)
+Dinsdagochtend: Ruzie met interperter op laptop, SAP navigatie verder gedaan, ook naar wat oude code van webshop gekeken en wat opgeschoond
+Dinsdagmiddag: Wat webshop functionaliteiten gevonden die niet meer werkte (database keys etc.) gefixt en wat code mooier gemaakt. Verder gekeken naar wat SAP modules die eerder bij defensie waren benoemd (Plant maintenance bijv.)
